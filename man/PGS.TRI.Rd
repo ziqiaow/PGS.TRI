@@ -41,6 +41,9 @@ A list of results of PGS.TRI
 \item{res_delta}{Results of indirect parental PGS effect difference: PGS_mother - PGS_father}
 \item{var_fam}{Within-family variances for each family}
 \item{var_fam_sum}{Sum of within-family variances}
+\item{log_LC}{Log likelihood of the offspring's transmission component}
+\item{log_LP_profile}{The log profile likelihood of parents' component, note that we can only report the likelihood when only considering direct effects in the model}
+\item{log_likelihood}{Results of the final log-likelihood. This is calculated as the sum of the offspring's and parents' components}
 }
 \description{
 A unified framework for the estimation of polygenic direct effect, indirect effect, and GxE interactions in case-parent trio studies
