@@ -44,6 +44,7 @@ A list of results of PGS.TRI
 \item{log_LC}{Log likelihood of the offspring's transmission component}
 \item{log_LP_profile}{The log profile likelihood of parents' component, note that we can report this likelihood when only considering direct effects in the model}
 \item{log_likelihood}{Results of the final log-likelihood. This is calculated as the sum of the offspring's and parents' components}
+\item{vcov}{Variance-covariance matrix of coefficients for direct genetic effects and gene–environment interaction terms (PGS×E)}
 }
 \description{
 A unified framework for the estimation of polygenic direct effect, indirect effect, and GxE interactions in case-parent trio studies
