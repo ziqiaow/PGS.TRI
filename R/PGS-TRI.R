@@ -16,6 +16,9 @@
 #'  \item{res_delta}{Results of indirect parental PGS effect difference: PGS_mother - PGS_father}
 #'  \item{var_fam}{Within-family variances for each family}
 #'  \item{var_fam_sum}{Sum of within-family variances}
+#'  \item{log_LC}{Log likelihood of the offspring's transmission component}
+#'  \item{log_LP_profile}{The log profile likelihood of parents' component, note that we can only report the likelihood when only considering direct effects in the model}
+#'  \item{log_likelihood}{Results of the final log-likelihood. This is calculated as the sum of the offspring's and parents' components}
 #'
 #' @export
 #'
@@ -95,7 +98,10 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
         res_beta=res.sum.t(parms=beta_hat, sd=sd_beta_hat, df0 = (length(pgs_c)-1) ,sided = side0)
       }
     rownames(res_beta)="PGS"
-    res=list(res_beta=res_beta, var_fam=var_fam)
+    log_L1 = sum(dnorm(pgs_c,mean= (0.5*(pgs_m+pgs_f) + res_beta[1,1] * var_fam/2), sd = sqrt(var_fam/2) ,log=T))
+    log_L2_profile = sum(log(exp(-0.5)/pi/(pgs_m-pgs_f)^2))
+    log_likelihood = log_L1 + log_L2_profile
+    res=list(res_beta=res_beta, var_fam=var_fam, log_LC = log_L1, log_LP_profile = log_L2_profile, log_likelihood = log_likelihood)
     return(res)
   }
 
@@ -130,8 +136,9 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
 
     rownames(res_beta)="PGS"
     rownames(res_delta)="Indirect_Diff_MF"
+    log_L1 = sum(dnorm(pgs_c,mean= (0.5*(pgs_m+pgs_f) + res_beta[1,1] * var_fam/2), sd = sqrt(var_fam/2) ,log=T))
 
-    res=list(res_beta=res_beta,res_delta=res_delta,var_fam_sum=var_fam_sum)
+    res=list(res_beta=res_beta,res_delta=res_delta,var_fam_sum=var_fam_sum, log_LC = log_L1)
     return(res)
 
   }
@@ -214,7 +221,12 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
       res_beta=res.sum.t(parms=beta_hat,sd=sd_beta_taylor,df0 = (length(pgs_c)-1) ,sided = side0)
     }
 
-    res=list(res_beta=res_beta,  var_fam=var_fam)
+    tmp = as.numeric(beta_hat[1] + t(beta_hat[-1] %*% t(envir)))
+    log_L1 = sum(log(1/sqrt(2*pi*var_fam/2)) - 0.5*var_fam/2*tmp^2 + (pgs_c - 0.5*(pgs_m+pgs_f))*tmp - (pgs_c - 0.5*(pgs_m+pgs_f))^2/var_fam )
+    log_L2_profile = sum(log(exp(-0.5)/pi/(pgs_m-pgs_f)^2))
+    log_likelihood = log_L1 + log_L2_profile
+    res=list(res_beta=res_beta, var_fam=var_fam, log_LC = log_L1, log_LP_profile = log_L2_profile, log_likelihood = log_likelihood)
+
     return(res)
 
   }
@@ -310,8 +322,10 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
     }
 
     rownames(res_delta)="Indirect_Diff_MF"
+    tmp = as.numeric(beta_hat[1] + t(beta_hat[-1] %*% t(envir)))
+    log_L1 = sum(log(1/sqrt(2*pi*var_fam/2)) - 0.5*var_fam/2*tmp^2 + (pgs_c - 0.5*(pgs_m+pgs_f))*tmp - (pgs_c - 0.5*(pgs_m+pgs_f))^2/var_fam )
 
-    res=list(res_beta=res_beta,res_delta=res_delta,var_fam_sum=var_fam_sum)
+    res=list(res_beta=res_beta,res_delta=res_delta,var_fam_sum=var_fam_sum, log_LC = log_L1)
     return(res)
 
   }
