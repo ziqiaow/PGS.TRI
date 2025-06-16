@@ -212,8 +212,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
       names(beta_hat)=c("PGS",paste0("PGS x ",colnames(envir)[-1]))
     }
     names(sd_beta_taylor)=names(beta_hat)
-
-
+    rownames(var_beta_taylor) = colnames(var_beta_taylor) = names(beta_hat)
 
 
     if(smalltriosize == FALSE){
@@ -309,6 +308,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
       names(beta_hat)=c("PGS",paste0("PGS x ",colnames(envir)[-1]))
     }
     names(sd_beta_taylor)=names(beta_hat)
+    rownames(var_beta_taylor) = colnames(var_beta_taylor) = names(beta_hat)
 
 
 
