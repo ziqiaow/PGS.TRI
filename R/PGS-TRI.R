@@ -19,6 +19,7 @@
 #'  \item{log_LC}{Log likelihood of the offspring's transmission component}
 #'  \item{log_LP_profile}{The log profile likelihood of parents' component, note that we can report this likelihood when only considering direct effects in the model}
 #'  \item{log_likelihood}{Results of the final log-likelihood. This is calculated as the sum of the offspring's and parents' components}
+#'  \item{vcov}{Variance-covariance matrix of coefficients for direct genetic effects and gene–environment interaction terms (PGS×E)}
 #'
 #' @export
 #'
@@ -225,7 +226,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
     log_L1 = sum(log(1/sqrt(2*pi*var_fam/2)) - 0.5*var_fam/2*tmp^2 + (pgs_c - 0.5*(pgs_m+pgs_f))*tmp - (pgs_c - 0.5*(pgs_m+pgs_f))^2/var_fam )
     log_L2_profile = sum(log(exp(-0.5)/pi/(pgs_m-pgs_f)^2))
     log_likelihood = log_L1 + log_L2_profile
-    res=list(res_beta=res_beta, var_fam=var_fam, log_LC = log_L1, log_LP_profile = log_L2_profile, log_likelihood = log_likelihood)
+    res=list(res_beta=res_beta, var_fam=var_fam, vcov = var_beta_taylor, log_LC = log_L1, log_LP_profile = log_L2_profile, log_likelihood = log_likelihood)
 
     return(res)
 
@@ -325,7 +326,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
     tmp = as.numeric(t(res_beta[,1] %*% t(envir)))
     log_L1 = sum(log(1/sqrt(2*pi*var_fam_sum/n_family/2)) - 0.5*var_fam_sum/n_family/2*tmp^2 + (pgs_c - 0.5*(pgs_m+pgs_f))*tmp - (pgs_c - 0.5*(pgs_m+pgs_f))^2/(var_fam_sum/n_family))
 
-    res=list(res_beta=res_beta,res_delta=res_delta,var_fam_sum=var_fam_sum, log_LC = log_L1)
+    res=list(res_beta=res_beta,res_delta=res_delta,var_fam_sum=var_fam_sum, vcov = var_beta_taylor, log_LC = log_L1)
     return(res)
 
   }
