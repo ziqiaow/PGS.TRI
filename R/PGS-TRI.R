@@ -24,7 +24,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
                    pgs_mother, #The PGS values of mothers that corresponds to the children. A vector of same length N, no missing values are allowed
                    pgs_father, #The PGS values of fathers that corresponds to the children. A vector of same length N, no missing values are allowed
                    GxE_int = FALSE, #Whether there are interaction effect between pgs and environmental variables that are of interest in the model. If FALSE, then "formula" and "E" are ignored.
-                   parental_indirect = FALSE, #Whether to estimate potential parental nurturing effect, returns an estimated difference of mother and father parental effect (delta_MF = beta_M - beta_F). Note that when this is TRUE, GxE_int will be ignored.
+                   parental_indirect = FALSE, #Whether to estimate potential parental indirect effect, returns an estimated difference of mother and father parental effect (delta_MF = beta_M - beta_F).
                    formula= ~ envir1 +envir2+factor(s1), #The environmental variables of interest for the PGSxE interaction effect
                    E, #The environmental variables of interest for interaction effect. A vector of length N for one environmental variable or a data frame/data matrix of NxP for P environmental variables are allowed.
                    side = 2, #Sided of the Wald test, default is 2-sided.
@@ -81,7 +81,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
 
 
 
-  pgs.tdt=function(pgs_c,pgs_m,pgs_f,side0=2){
+  pgs.direct=function(pgs_c,pgs_m,pgs_f,side0=2){
     cat(paste("The complete number of trios is",length(pgs_c),"\n"))
     var_fam=1/2*(pgs_m-pgs_f)^2
     beta_hat=2*sum(pgs_c-(pgs_m+pgs_f)/2)/sum(var_fam)
@@ -101,7 +101,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
 
 
 
-  pgs.tdt.nurture=function(pgs_c,pgs_m,pgs_f,side0=2){
+  pgs.indirect=function(pgs_c,pgs_m,pgs_f,side0=2){
     cat(paste("The complete number of trios is",length(pgs_c),"\n"))
     n_family=length(pgs_c)
     x_bar=sum(pgs_m-pgs_f)/n_family
@@ -136,7 +136,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
 
   }
 
-  pgs.tdt.gxe=function(pgs_c,pgs_m,pgs_f,formula0,envir0,side0=2,numDeriv0=F){
+  pgs.direct.gxe=function(pgs_c,pgs_m,pgs_f,formula0,envir0,side0=2,numDeriv0=F){
 
     envir0=data.frame(envir0)
     options(na.action='na.pass')
@@ -220,7 +220,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
   }
 
 
-  pgs.tdt.nurture.gxe=function(pgs_c,pgs_m,pgs_f,formula0,envir0,side0=2){
+  pgs.direct.indirect.gxe=function(pgs_c,pgs_m,pgs_f,formula0,envir0,side0=2){
 
     envir0=data.frame(envir0)
     options(na.action='na.pass')
@@ -320,14 +320,14 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
   if (parental_indirect == TRUE){
 
     if (GxE_int == FALSE){
-      pgs.tdt.nurture(pgs_c = pgs_offspring,
+      pgs.indirect(pgs_c = pgs_offspring,
                       pgs_m = pgs_mother,
                       pgs_f = pgs_father,
                       side0 = side)
 
     } else {
 
-      pgs.tdt.nurture.gxe(pgs_c = pgs_offspring,
+      pgs.direct.indirect.gxe(pgs_c = pgs_offspring,
                           pgs_m = pgs_mother,
                           pgs_f = pgs_father,
                           formula0 = formula,
@@ -338,14 +338,14 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
 
   } else if (GxE_int == FALSE){
 
-    pgs.tdt(pgs_c = pgs_offspring,
+    pgs.direct(pgs_c = pgs_offspring,
             pgs_m = pgs_mother,
             pgs_f = pgs_father,
             side0 = side)
 
   } else {
 
-    pgs.tdt.gxe(pgs_c = pgs_offspring,
+    pgs.direct.gxe(pgs_c = pgs_offspring,
                 pgs_m = pgs_mother,
                 pgs_f = pgs_father,
                 formula0 = formula,

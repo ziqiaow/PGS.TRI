@@ -1,0 +1,7 @@
+citHeader("To cite PGS.TRI in publications use:")
+
+bibentry(bibtype = "Article",
+         title = "Estimation of Direct and Indirect Polygenic Effects and Gene-Environment Interactions using Polygenic Scores in Case-Parent Trio Studies",
+         author = "Ziqiao Wang, Luke Grosvenor, Debashree Ray, Ingo Ruczinski, Terri H. Beaty, Heather Volk, Christine Ladd-Acosta, Nilanjan Chatterjee",
+         year = "2024", journal = "medRxiv",
+         doi = "10.1101/2024.10.08.24315066")
