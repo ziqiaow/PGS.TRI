@@ -32,7 +32,10 @@ If you only want to use specific functions, you can also do this
     source("./R/PGS-TRI.R")
     source("./R/simulation.R")
 
-# Questions
+## Tutorial and examples
+https://ziqiaow.github.io/PGS.TRI/
+
+## Questions
 
 This software will be constantly updated, so please send your
 questions/suggestions to <zwang389@jhu.edu> to help improve the package.
