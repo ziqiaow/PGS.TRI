@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-![figure_github2](https://github.com/user-attachments/assets/5630687f-dc02-45a3-a616-9b45e19ca443)
+<img src="https://github.com/user-attachments/assets/5630687f-dc02-45a3-a616-9b45e19ca443"  width=95% height=95%>
 
 
 <!-- badges: start -->
@@ -33,10 +33,7 @@ If you only want to use specific functions, you can also do this
     source("./R/PGS-TRI.R")
     source("./R/simulation.R")
 
-## Tutorial and examples
-https://ziqiaow.github.io/PGS.TRI/
-
-## Questions
+# Questions
 
 This software will be constantly updated, so please send your
 questions/suggestions to <zwang389@jhu.edu> to help improve the package.

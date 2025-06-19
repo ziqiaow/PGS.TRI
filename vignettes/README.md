@@ -6,8 +6,8 @@ A Likelihood-Based Method for Risk Parameter Estimation under Polygenic Models f
 * Ziqiao Wang, Luke Grosvenor, Debashree Ray, Ingo Ruczinski, Terri Beaty, Heather Volk, Christine Ladd-Acosta, Nilanjan Chatterjee (2024). Estimation of Direct and Indirect Polygenic Effects and Gene-Environment Interactions using Polygenic Scores in Case-Parent Trio Studies.
  medRxiv. https://doi.org/10.1101/2024.10.08.24315066
 
-<img src="https://github.com/user-attachments/assets/a09ac2d4-3dac-4391-a31f-4bf3f7adc238" width=65% height=65%>
 
+<img src="https://github.com/user-attachments/assets/5630687f-dc02-45a3-a616-9b45e19ca443"  width=95% height=95%>
 
 ## Install R Package
 The package can be easily installed from Github
