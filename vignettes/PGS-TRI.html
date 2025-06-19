@@ -461,9 +461,9 @@ res_sim = PGS.TRI(pgs_offspring = PRS_fam[,1],
                  side = 2)</code></pre>
 <pre><code>## The complete number of trios with non-missing environmental variables is 1000</code></pre>
 <pre class="r"><code>endTime &lt;- Sys.time()</code></pre>
-<p>Print the final results. “Estimate” refers to log relative risk (log
-RR).</p>
-<pre class="r"><code>res_sim$res_beta</code></pre>
+<p>Print the final results of the estimated direct PGS effect and PGSxE
+interactions. “Estimate” refers to log relative risk (log RR).</p>
+<pre class="r"><code>res_sim$Coefficients_direct</code></pre>
 <pre><code>##                             Estimate  Std.Error    Z.value       Pvalue
 ## PGS                       0.38144038 0.11200084  3.4056920 0.0006599659
 ## PGS x factor(E_sim_bin)1 -0.09540744 0.14213861 -0.6712282 0.5020751927
@@ -480,7 +480,7 @@ families.</p>
 <pre><code>## [1] 0.4369649</code></pre>
 <p>Print running time of PGS.TRI() function of 1000 trios.</p>
 <pre class="r"><code>print(endTime - startTime)</code></pre>
-<pre><code>## Time difference of 0.153285 secs</code></pre>
+<pre><code>## Time difference of 0.2138779 secs</code></pre>
 </div>
 <div id="questions" class="section level1">
 <h1>Questions</h1>

@@ -177,10 +177,10 @@ Pr(D=1)=0.01.</p>
 <pre><code><span><span class="co">## The complete number of trios with non-missing environmental variables is 1000</span></span></code></pre>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">endTime</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>Print the final results. “Estimate” refers to log relative risk (log
-RR).</p>
+<p>Print the final results of the estimated direct PGS effect and PGSxE
+interactions. “Estimate” refers to log relative risk (log RR).</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res_sim</span><span class="op">$</span><span class="va">res_beta</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">res_sim</span><span class="op">$</span><span class="va">Coefficients_direct</span></span></code></pre></div>
 <pre><code><span><span class="co">##                             Estimate  Std.Error    Z.value       Pvalue</span></span>
 <span><span class="co">## PGS                       0.38144038 0.11200084  3.4056920 0.0006599659</span></span>
 <span><span class="co">## PGS x factor(E_sim_bin)1 -0.09540744 0.14213861 -0.6712282 0.5020751927</span></span>
@@ -201,7 +201,7 @@ families.</p>
 <p>Print running time of PGS.TRI() function of 1000 trios.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">endTime</span> <span class="op">-</span> <span class="va">startTime</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Time difference of 0.142318 secs</span></span></code></pre>
+<pre><code><span><span class="co">## Time difference of 0.1461999 secs</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="questions">Questions<a class="anchor" aria-label="anchor" href="#questions"></a>

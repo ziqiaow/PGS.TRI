@@ -77,9 +77,9 @@ res_sim = PGS.TRI(pgs_offspring = PRS_fam[,1],
 endTime <- Sys.time()
 ```
 
-Print the final results. "Estimate" refers to log relative risk (log RR). 
+Print the final results of the estimated direct PGS effect and PGSxE interactions. "Estimate" refers to log relative risk (log RR). 
 ```{r}
-res_sim$res_beta
+res_sim$Coefficients_direct
 
 ```
 The original simulated data for PGS main effect was 0.4 and no interaction effect with E.
