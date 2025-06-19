@@ -31,7 +31,7 @@ PGS.TRI(
 
 \item{E}{The environmental variables of interest for interaction effect. A vector of length N for one environmental variable or a data frame/data matrix of NxP for P environmental variables are allowed.}
 
-\item{side}{Sided of the Wald test, default is 2-sided.}
+\item{side}{Sided of the Wald test or t test, default is 2-sided.}
 
 \item{smalltriosize}{Whether number of trios is small (<100), if TRUE, a t test will be used rather than a wald test.}
 }
