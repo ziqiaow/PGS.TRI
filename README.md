@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<img src="https://github.com/user-attachments/assets/a09ac2d4-3dac-4391-a31f-4bf3f7adc238" width=65% height=65%>
+![figure_github2](https://github.com/user-attachments/assets/5bc653c9-d86c-4005-b459-7b14025b382a)
 
 <!-- badges: start -->
 <!-- badges: end -->
