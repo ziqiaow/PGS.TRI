@@ -34,7 +34,7 @@ The required data as input for this software are simple: PGS values for mothers,
 You can construct PGS for trios using pre-trained weights available on previously reported sources using external data, such as [PGScatalog](https://www.pgscatalog.org/), following steps described for unrelated individuals using softwares such as PLINK/2.0. Examples such as Autism Spectrum Disorders [PGS000327](https://www.pgscatalog.org/score/PGS000327/), Orofacial Clefts [PGS002266](https://www.pgscatalog.org/score/PGS002266/), Educational Attainment [PGS002012](https://www.pgscatalog.org/score/PGS002012/) can all be obtained freely online.
 
 ## Example Analysis
-We provide a simple example for running our proposed method using simulated data. The R function of the proposed method is in [PGS-TRI](R/PGS-TRI.R). The R function to simulate data is available here [simulation](R/simulation.R). We also provide the R function to run the polygenic TDT (pTDT) test [pTDT](R/pTDT.R) (originally proposed by Weiner et al, Nat Genet. 2017). For PGSxE analysis, the case-only method is also implemented here [case-only](R/case-only.R) (Allison et al, AJE 2019; Wang et al, AJE 2024).
+We provide a simple example for running our proposed method using simulated data. The R function of the proposed method is in [PGS-TRI](../R/PGS-TRI.R). The R function to simulate data is available here [simulation](../R/simulation.R). We also provide the R function to run the polygenic TDT (pTDT) test [pTDT](../R/pTDT.R) (originally proposed by Weiner et al, Nat Genet. 2017). For PGSxE analysis, the case-only method is also implemented here [case-only](../R/case-only.R) (Allison et al, AJE 2019; Wang et al, AJE 2024).
 
 First simulate 200000 families based on a population disease risk model following a logistic regression with PGS main effect, two independent environmental variables $E_1$ (binary) and $E_2$ (continuous), and their interaction effect with PGS. Assume the marginal disease prevalence is Pr(D=1)=0.01.
 ```
@@ -108,9 +108,9 @@ res_sim = PGS.TRI(pgs_offspring = PRS_fam[,1],
 endTime <- Sys.time()
 ```
 
-Print the final results. "Estimate" refers to log relative risk (log RR). 
+Print the final results for estimates of direct PGS effect and PGSxE interactions. "Estimate" refers to log relative risk (log RR). 
 ```
-res_sim$res_beta
+res_sim$Coefficients_direct
 #                             Estimate  Std.Error    Z.value       Pvalue
 # PGS                       0.38144038 0.11200084  3.4056920 0.0006599659
 # PGS x factor(E_sim_bin)1 -0.09540744 0.14213861 -0.6712282 0.5020751927
