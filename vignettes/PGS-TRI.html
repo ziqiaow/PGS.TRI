@@ -396,12 +396,12 @@ be obtained freely online.</p>
 <div id="example-analysis" class="section level2">
 <h2>Example Analysis</h2>
 <p>We provide a simple example for running our proposed method using
-simulated data. The R function of the proposed method is in <a href="R/PGS-TRI.R">PGS-TRI</a>. The R function to simulate data is
-available here <a href="R/simulation.R">simulation</a>. We also provide
-the R function to run the polygenic TDT (pTDT) test <a href="R/pTDT.R">pTDT</a> (originally proposed by Weiner et al, Nat
+simulated data. The R function of the proposed method is in <a href="../R/PGS-TRI.R">PGS-TRI</a>. The R function to simulate data is
+available here <a href="../R/simulation.R">simulation</a>. We also
+provide the R function to run the polygenic TDT (pTDT) test <a href="../R/pTDT.R">pTDT</a> (originally proposed by Weiner et al, Nat
 Genet. 2017). For PGSxE analysis, the case-only method is also
-implemented here <a href="R/case-only.R">case-only</a> (Allison et al,
-AJE 2019; Wang et al, AJE 2024).</p>
+implemented here <a href="../R/case-only.R">case-only</a> (Allison et
+al, AJE 2019; Wang et al, AJE 2024).</p>
 <p>First simulate 200000 families based on a population disease risk
 model following a logistic regression with PGS main effect, two
 independent environmental variables <span class="math inline">\(E_1\)</span> (binary) and <span class="math inline">\(E_2\)</span> (continuous), and their interaction
@@ -480,7 +480,7 @@ families.</p>
 <pre><code>## [1] 0.4369649</code></pre>
 <p>Print running time of PGS.TRI() function of 1000 trios.</p>
 <pre class="r"><code>print(endTime - startTime)</code></pre>
-<pre><code>## Time difference of 0.2138779 secs</code></pre>
+<pre><code>## Time difference of 0.1712651 secs</code></pre>
 </div>
 <div id="questions" class="section level1">
 <h1>Questions</h1>
