@@ -37,8 +37,8 @@ PGS.TRI(
 }
 \value{
 A list of results of PGS.TRI
-\item{res_beta}{Results of direct PGS effect, if GxE_int is TRUE, then the result will also include PGSxE interaction effects}
-\item{res_delta}{Results of indirect parental PGS effect difference: PGS_mother - PGS_father}
+\item{Coefficients_direct}{Results of direct PGS effect, if GxE_int is TRUE, then the result will also include PGSxE interaction effects}
+\item{Coefficients_indirect}{Results of indirect parental PGS effect difference: PGS_mother - PGS_father}
 \item{var_fam}{Within-family variances for each family}
 \item{var_fam_sum}{Sum of within-family variances}
 \item{log_LC}{Log likelihood of the offspring's transmission component}

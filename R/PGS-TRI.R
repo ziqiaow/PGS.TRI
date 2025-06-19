@@ -12,8 +12,8 @@
 #' @param smalltriosize Whether number of trios is small (<100), if TRUE, a t test will be used rather than a wald test.
 #'
 #' @return A list of results of PGS.TRI
-#'  \item{res_beta}{Results of direct PGS effect, if GxE_int is TRUE, then the result will also include PGSxE interaction effects}
-#'  \item{res_delta}{Results of indirect parental PGS effect difference: PGS_mother - PGS_father}
+#'  \item{Coefficients_direct}{Results of direct PGS effect, if GxE_int is TRUE, then the result will also include PGSxE interaction effects}
+#'  \item{Coefficients_indirect}{Results of indirect parental PGS effect difference: PGS_mother - PGS_father}
 #'  \item{var_fam}{Within-family variances for each family}
 #'  \item{var_fam_sum}{Sum of within-family variances}
 #'  \item{log_LC}{Log likelihood of the offspring's transmission component}
@@ -102,7 +102,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
     log_L1 = sum(dnorm(pgs_c,mean= (0.5*(pgs_m+pgs_f) + res_beta[1,1] * var_fam/2), sd = sqrt(var_fam/2) ,log=T))
     log_L2_profile = sum(log(exp(-0.5)/pi/(pgs_m-pgs_f)^2))
     log_likelihood = log_L1 + log_L2_profile
-    res=list(res_beta=res_beta, var_fam=var_fam, log_LC = log_L1, log_LP_profile = log_L2_profile, log_likelihood = log_likelihood)
+    res=list(Coefficients_direct=res_beta, var_fam=var_fam, log_LC = log_L1, log_LP_profile = log_L2_profile, log_likelihood = log_likelihood)
     return(res)
   }
 
@@ -139,7 +139,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
     rownames(res_delta)="Indirect_Diff_MF"
     log_L1 = sum(dnorm(pgs_c,mean= (0.5*(pgs_m+pgs_f) + res_beta[1,1] * var_fam_sum/n_family/2), sd = sqrt(var_fam_sum/n_family/2) ,log=T))
 
-    res=list(res_beta=res_beta,res_delta=res_delta,var_fam_sum=var_fam_sum, log_LC = log_L1)
+    res=list(Coefficients_direct=res_beta,Coefficients_indirect=res_delta,var_fam_sum=var_fam_sum, log_LC = log_L1)
     return(res)
 
   }
@@ -225,7 +225,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
     log_L1 = sum(log(1/sqrt(2*pi*var_fam/2)) - 0.5*var_fam/2*tmp^2 + (pgs_c - 0.5*(pgs_m+pgs_f))*tmp - (pgs_c - 0.5*(pgs_m+pgs_f))^2/var_fam )
     log_L2_profile = sum(log(exp(-0.5)/pi/(pgs_m-pgs_f)^2))
     log_likelihood = log_L1 + log_L2_profile
-    res=list(res_beta=res_beta, var_fam=var_fam, vcov = var_beta_taylor, log_LC = log_L1, log_LP_profile = log_L2_profile, log_likelihood = log_likelihood)
+    res=list(Coefficients_direct=res_beta, var_fam=var_fam, vcov = var_beta_taylor, log_LC = log_L1, log_LP_profile = log_L2_profile, log_likelihood = log_likelihood)
 
     return(res)
 
@@ -326,7 +326,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
     tmp = as.numeric(t(res_beta[,1] %*% t(envir)))
     log_L1 = sum(log(1/sqrt(2*pi*var_fam_sum/n_family/2)) - 0.5*var_fam_sum/n_family/2*tmp^2 + (pgs_c - 0.5*(pgs_m+pgs_f))*tmp - (pgs_c - 0.5*(pgs_m+pgs_f))^2/(var_fam_sum/n_family))
 
-    res=list(res_beta=res_beta,res_delta=res_delta,var_fam_sum=var_fam_sum, vcov = var_beta_taylor, log_LC = log_L1)
+    res=list(Coefficients_direct=res_beta,Coefficients_indirect=res_delta,var_fam_sum=var_fam_sum, vcov = var_beta_taylor, log_LC = log_L1)
     return(res)
 
   }

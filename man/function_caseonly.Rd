@@ -15,7 +15,7 @@ function_caseonly(prs_c, envir, mean_prs)
 }
 \value{
 Results of case-only analysis for PGSxE
-\item{res}{Results of PGSxE interaction effects}
+\item{Coefficients}{Results of PGSxE interaction effects}
 }
 \description{
 Polygenic PGSxE interactions using the case-only method in unrelated individuals with the disease/condition

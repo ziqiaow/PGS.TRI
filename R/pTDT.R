@@ -8,7 +8,7 @@
 #'
 #'
 #' @return Results of pTDT
-#'  \item{res_beta}{Results of direct PGS effect, if GxE_int is TRUE, then the result will also include PGSxE interaction effects}
+#'  \item{statistic}{Results of polygenic transmission disequilibrium test}
 #'
 #' @export
 #'
@@ -47,7 +47,7 @@ ptdt=function(pgs_c, #The PGS values of the affected probands (children). A vect
 
   res_beta=res.sum.t(parms=mean(ptdt.deviation),cov=sd(ptdt.deviation)/sqrt(length(pgs_c)),df0=length(pgs_c)-1,sided = side0)
 
-  res=list(res_beta=res_beta)
+  res=list(statistic=res_beta)
   return(res)
 }
 

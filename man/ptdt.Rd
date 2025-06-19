@@ -17,7 +17,7 @@ ptdt(pgs_c, pgs_m, pgs_f, side0 = 2)
 }
 \value{
 Results of pTDT
-\item{res_beta}{Results of direct PGS effect, if GxE_int is TRUE, then the result will also include PGSxE interaction effects}
+\item{statistic}{Results of polygenic transmission disequilibrium test}
 }
 \description{
 Polygenic transmission disequilibrium test in case-parent trios for direct PGS effect

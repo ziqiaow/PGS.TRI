@@ -7,7 +7,7 @@
 #'
 #'
 #' @return Results of case-only analysis for PGSxE
-#'  \item{res}{Results of PGSxE interaction effects}
+#'  \item{Coefficients}{Results of PGSxE interaction effects}
 #'
 #' @export
 #'
@@ -50,10 +50,10 @@ function_caseonly <- function(prs_c,
   beta_prs=(fit_caseonly$coefficients[1]-mean_prs)/(sd(fit_caseonly$residuals))^2
   sd_prs1= sqrt(( (summary(fit_caseonly)$coef[1,2])^2 +(sd(fit_caseonly$residuals))^2/1000000) / (sd(fit_caseonly$residuals))^4)
 
-  res=summary.caseonly(parms = c(beta_prs,beta_int),sd=c(sd_prs1,sd_int))
+  Coefficients=summary.caseonly(parms = c(beta_prs,beta_int),sd=c(sd_prs1,sd_int))
 
 
-  return(res)
+  return(Coefficients)
 }
 
 
