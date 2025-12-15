@@ -37,7 +37,7 @@ If you only want to use specific functions, you can also do this
 
 The full tutorial of PGS.TRI package and data examples are in this website [https://ziqiaow.github.io/PGS.TRI/](https://ziqiaow.github.io/PGS.TRI/).
 
-The source code for the manuscript is available in [https://ziqiaow.github.io/PGS.TRI](https://github.com/ziqiaow/PGS-TRI-Analysis).
+The source code for the manuscript is available in [https://github.com/ziqiaow/PGS-TRI-Analysis](https://github.com/ziqiaow/PGS-TRI-Analysis).
 
 # Questions
 
@@ -51,4 +51,5 @@ questions/suggestions to <zwang389@jhu.edu> to help improve the package.
     (2024). Estimation of Direct and Indirect Polygenic Effects and
     Gene-Environment Interactions using Polygenic Scores in Case-Parent
     Trio Studies. medRxiv. <https://doi.org/10.1101/2024.10.08.24315066>
+
 
