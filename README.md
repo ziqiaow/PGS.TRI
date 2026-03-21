@@ -50,6 +50,6 @@ questions/suggestions to <ziqiao.wang@virginia.edu> to help improve the package.
     Beaty, Heather Volk, Christine Ladd-Acosta, Nilanjan Chatterjee
     (2024). Estimation of Direct and Indirect Polygenic Effects and
     Gene-Environment Interactions using Polygenic Scores in Case-Parent
-    Trio Studies. medRxiv. <https://doi.org/10.1101/2024.10.08.24315066v2>
+    Trio Studies. medRxiv. <https://www.medrxiv.org/content/10.1101/2024.10.08.24315066v2>
 
 
