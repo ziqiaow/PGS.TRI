@@ -101,5 +101,5 @@ print(endTime - startTime)
 ```
 
 # Questions
-This software will be constantly updated, so please send your questions/suggestions to zwang389@jhu.edu to help improve the package.
+This software will be constantly updated, so please send your questions/suggestions to ziqiao.wang@virginia.edu to help improve the package.
 
