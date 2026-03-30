@@ -1,45 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>http://ziqiaow.github.io/PGS.TRI/404.html</loc>
-  </url>
-  <url>
-    <loc>http://ziqiaow.github.io/PGS.TRI/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>http://ziqiaow.github.io/PGS.TRI/articles/PGS-TRI.html</loc>
-  </url>
-  <url>
-    <loc>http://ziqiaow.github.io/PGS.TRI/articles/PGS.TRI.html</loc>
-  </url>
-  <url>
-    <loc>http://ziqiaow.github.io/PGS.TRI/articles/README.html</loc>
-  </url>
-  <url>
-    <loc>http://ziqiaow.github.io/PGS.TRI/authors.html</loc>
-  </url>
-  <url>
-    <loc>http://ziqiaow.github.io/PGS.TRI/index.html</loc>
-  </url>
-  <url>
-    <loc>http://ziqiaow.github.io/PGS.TRI/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>http://ziqiaow.github.io/PGS.TRI/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>http://ziqiaow.github.io/PGS.TRI/reference/function_caseonly.html</loc>
-  </url>
-  <url>
-    <loc>http://ziqiaow.github.io/PGS.TRI/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>http://ziqiaow.github.io/PGS.TRI/reference/PGS.TRI.html</loc>
-  </url>
-  <url>
-    <loc>http://ziqiaow.github.io/PGS.TRI/reference/ptdt.html</loc>
-  </url>
-  <url>
-    <loc>http://ziqiaow.github.io/PGS.TRI/reference/sim_prospective_population.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>http://ziqiaow.github.io/PGS.TRI/404.html</loc></url>
+<url><loc>http://ziqiaow.github.io/PGS.TRI/articles/index.html</loc></url>
+<url><loc>http://ziqiaow.github.io/PGS.TRI/articles/PGS-TRI.html</loc></url>
+<url><loc>http://ziqiaow.github.io/PGS.TRI/articles/PGS.TRI.html</loc></url>
+<url><loc>http://ziqiaow.github.io/PGS.TRI/articles/README.html</loc></url>
+<url><loc>http://ziqiaow.github.io/PGS.TRI/authors.html</loc></url>
+<url><loc>http://ziqiaow.github.io/PGS.TRI/index.html</loc></url>
+<url><loc>http://ziqiaow.github.io/PGS.TRI/LICENSE-text.html</loc></url>
+<url><loc>http://ziqiaow.github.io/PGS.TRI/LICENSE.html</loc></url>
+<url><loc>http://ziqiaow.github.io/PGS.TRI/reference/function_caseonly.html</loc></url>
+<url><loc>http://ziqiaow.github.io/PGS.TRI/reference/index.html</loc></url>
+<url><loc>http://ziqiaow.github.io/PGS.TRI/reference/PGS.TRI.html</loc></url>
+<url><loc>http://ziqiaow.github.io/PGS.TRI/reference/ptdt.html</loc></url>
+<url><loc>http://ziqiaow.github.io/PGS.TRI/reference/sim_prospective_population.html</loc></url>
 </urlset>
+
