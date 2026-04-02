@@ -45,7 +45,7 @@ The source code for the manuscript is available in
 - Apr 2, 2026: Update example codes.
 - March 30, 2026: Update PGS-TRI function, added PGS-TRI-centered
   feature for centering $\delta$-IDE using reference data.
-- Nov 15, 2025: Update citation medRxiv version 2.
+- June 17, 2025: Update citation medRxiv version 2.
 - Sept 18, 2024: Repository made public.
 
 This software will be constantly updated, so please send your
