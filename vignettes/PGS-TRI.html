@@ -470,7 +470,7 @@ families.</p>
 <pre><code>## [1] 0.4369649</code></pre>
 <p>Print running time of PGS.TRI() function of 1000 trios.</p>
 <pre class="r"><code>print(endTime - startTime)</code></pre>
-<pre><code>## Time difference of 0.03130007 secs</code></pre>
+<pre><code>## Time difference of 0.04216599 secs</code></pre>
 </div>
 <div id="indirect-effect-estimation-and-centering-estimated-indirect-effect-using-a-reference-dataset" class="section level3">
 <h3>Indirect effect estimation and centering estimated indirect effect
@@ -513,7 +513,7 @@ res_snipar = PGS.TRI(pgs_offspring = PRS_fam_select[,1], pgs_mother = PRS_fam_se
 <p>Print running time of PGS.TRI() function of 1000 trios for direct and
 indirect effect estimation</p>
 <pre class="r"><code>print(endTime - startTime)</code></pre>
-<pre><code>## Time difference of 0.001142025 secs</code></pre>
+<pre><code>## Time difference of 0.001703024 secs</code></pre>
 <p>If we suspect systematic allele frequency differences between females
 and males (i.e., population-level mean PGS values differ by sex in the
 parental population, for example, due to asymmetric selection), a
@@ -540,8 +540,8 @@ indirect effect estimation.</p>
 <pre><code>##                     Estimate  Std.Error    Z.value    Pvalue
 ## Indirect_Diff_MF -0.04566616 0.06636633 -0.6880923 0.4913947</code></pre>
 <pre class="r"><code>res_snipar_centered$Coefficients_indirect_centered</code></pre>
-<pre><code>##                     Estimate  Std.Error    Z.value    Pvalue
-## Indirect_Diff_MF -0.04786841 0.06636633 -0.7212754 0.4707401</code></pre>
+<pre><code>##                              Estimate  Std.Error    Z.value    Pvalue
+## Indirect_Diff_MF_centered -0.04786841 0.06636633 -0.7212754 0.4707401</code></pre>
 </div>
 </div>
 <div id="questions" class="section level1">
