@@ -15,8 +15,8 @@ Description: PGS-TRI is for the analysis of polygenic scores (PGS) or
     population structure, assortative mating, and indirect genetic
     effects.
 License: GPL-3
-URL: https://github.com/ziqiaow/PGS-TRI
-BugReports: https://github.com/ziqiaow/PGS-TRI/issues
+URL: https://ziqiaow.github.io/PGS.TRI, https://github.com/ziqiaow/PGS-TRI, https://github.com/ziqiaow/PGS.TRI
+BugReports: https://github.com/ziqiaow/PGS.TRI/issues
 Encoding: UTF-8
 Paper source code: https://github.com/ziqiaow/PGS-TRI-Analysis
 Roxygen: list(markdown = TRUE)
