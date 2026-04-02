@@ -109,7 +109,7 @@ independent environmental variables
 disease prevalence is Pr(D=1)=0.01.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#example analysis</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ziqiaow.github.io/PGS.TRI">PGS.TRI</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ziqiaow/PGS.TRI" class="external-link">PGS.TRI</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">04262023</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#Generate 200000 families with offsprings disease prevalence to be 1%</span></span>
@@ -192,7 +192,7 @@ families.</p>
 <p>Print running time of PGS.TRI() function of 1000 trios.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">endTime</span> <span class="op">-</span> <span class="va">startTime</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Time difference of 0.1503928 secs</span></span></code></pre>
+<pre><code><span><span class="co">## Time difference of 0.1419261 secs</span></span></code></pre>
 </div>
 <div class="section level4">
 <h4 id="indirect-effect-estimation-and-centering-estimated-indirect-effect-using-a-reference-dataset">Indirect effect estimation and centering estimated indirect effect
@@ -254,7 +254,7 @@ dataset here:</p>
 indirect effect estimation</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">endTime</span> <span class="op">-</span> <span class="va">startTime</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Time difference of 0.00103426 secs</span></span></code></pre>
+<pre><code><span><span class="co">## Time difference of 0.001116991 secs</span></span></code></pre>
 <p>If we suspect systematic allele frequency differences between females
 and males (i.e., population-level mean PGS values differ by sex in the
 parental population, for example, due to asymmetric selection), a
