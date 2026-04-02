@@ -40,6 +40,10 @@ website <https://ziqiaow.github.io/PGS.TRI/>.
 The source code for the manuscript is available in
 <https://github.com/ziqiaow/PGS-TRI-Analysis>.
 
+## Recent Version History
+
+Apr 2, 2026: Update example codes. Nov 24, 2023: Repository made public.
+
 This software will be constantly updated, so please send your
 questions/suggestions to <ziqiao.wang@virginia.edu> to help improve the
 package.
