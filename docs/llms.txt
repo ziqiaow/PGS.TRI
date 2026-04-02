@@ -32,6 +32,14 @@ source("./R/PGS-TRI.R")
 source("./R/simulation.R")
 ```
 
+## Tutorial
+
+The full tutorial of PGS.TRI package and data examples are in this
+website <https://ziqiaow.github.io/PGS.TRI/>.
+
+The source code for the manuscript is available in
+<https://github.com/ziqiaow/PGS-TRI-Analysis>.
+
 This software will be constantly updated, so please send your
 questions/suggestions to <ziqiao.wang@virginia.edu> to help improve the
 package.
@@ -42,20 +50,22 @@ package.
   Beaty, Heather Volk, Christine Ladd-Acosta, Nilanjan Chatterjee
   (2024). Estimation of Direct and Indirect Polygenic Effects and
   Gene-Environment Interactions using Polygenic Scores in Case-Parent
-  Trio Studies. medRxiv. <https://doi.org/10.1101/2024.10.08.24315066>
+  Trio Studies. medRxiv.
+  <https://www.medrxiv.org/content/10.1101/2024.10.08.24315066v2>
 
 # Package index
 
 ## All functions
 
-- [`function_caseonly()`](http://ziqiaow.github.io/PGS.TRI/reference/function_caseonly.md)
+- [`function_caseonly()`](https://github.com/ziqiaow/PGS.TRI/reference/function_caseonly.md)
   : Case only analysis for PGSxE interactions
-- [`load_sim_dat()`](http://ziqiaow.github.io/PGS.TRI/reference/load_sim_dat.md)
+- [`load_sim_dat()`](https://github.com/ziqiaow/PGS.TRI/reference/load_sim_dat.md)
   : Load example dataset
-- [`PGS.TRI()`](http://ziqiaow.github.io/PGS.TRI/reference/PGS.TRI.md) :
-  PGS.TRI
-- [`ptdt()`](http://ziqiaow.github.io/PGS.TRI/reference/ptdt.md) : pTDT
-- [`sim_prospective_population()`](http://ziqiaow.github.io/PGS.TRI/reference/sim_prospective_population.md)
+- [`PGS.TRI()`](https://github.com/ziqiaow/PGS.TRI/reference/PGS.TRI.md)
+  : PGS.TRI
+- [`ptdt()`](https://github.com/ziqiaow/PGS.TRI/reference/ptdt.md) :
+  pTDT
+- [`sim_prospective_population()`](https://github.com/ziqiaow/PGS.TRI/reference/sim_prospective_population.md)
   : Simulation
 
 # Articles
@@ -63,4 +73,4 @@ package.
 ### All vignettes
 
 - [Getting started with
-  PGS.TRI](http://ziqiaow.github.io/PGS.TRI/articles/PGS-TRI.md):
+  PGS.TRI](https://github.com/ziqiaow/PGS.TRI/articles/PGS-TRI.md):

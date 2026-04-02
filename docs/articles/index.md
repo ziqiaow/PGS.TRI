@@ -3,4 +3,4 @@
 ### All vignettes
 
 - [Getting started with
-  PGS.TRI](http://ziqiaow.github.io/PGS.TRI/articles/PGS-TRI.md):
+  PGS.TRI](https://github.com/ziqiaow/PGS.TRI/articles/PGS-TRI.md):

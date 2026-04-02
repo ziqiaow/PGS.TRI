@@ -1,6 +1,6 @@
 #' Load example dataset
 #'
-#' @return A data frame containing the simulated dataset generated using SNIPAR. Each row corresponds to a family, columns correspond to child, mother, and father PGS values
+#' @return A 1000 × 3 data frame containing simulated polygenic scores (PGS). Each row represents a family and columns represent PGS values for the child, mother, and father, respectively. The PGS is calculated using 1000 independent SNPs and weights generated created by SNIPAR. Specifically, the example dataset is randomly selected case-parent trios of the 20th generation of 100000 families across 1000 independent SNPs, incorporating assortative mating with the parental phenotype correlation at 0.5.
 #' @export
 #' @examples
 #' PRS_fam_select <- load_sim_dat()

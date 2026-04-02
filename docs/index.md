@@ -32,6 +32,14 @@ source("./R/PGS-TRI.R")
 source("./R/simulation.R")
 ```
 
+## Tutorial
+
+The full tutorial of PGS.TRI package and data examples are in this
+website <https://ziqiaow.github.io/PGS.TRI/>.
+
+The source code for the manuscript is available in
+<https://github.com/ziqiaow/PGS-TRI-Analysis>.
+
 This software will be constantly updated, so please send your
 questions/suggestions to <ziqiao.wang@virginia.edu> to help improve the
 package.
@@ -42,4 +50,5 @@ package.
   Beaty, Heather Volk, Christine Ladd-Acosta, Nilanjan Chatterjee
   (2024). Estimation of Direct and Indirect Polygenic Effects and
   Gene-Environment Interactions using Polygenic Scores in Case-Parent
-  Trio Studies. medRxiv. <https://doi.org/10.1101/2024.10.08.24315066>
+  Trio Studies. medRxiv.
+  <https://www.medrxiv.org/content/10.1101/2024.10.08.24315066v2>
