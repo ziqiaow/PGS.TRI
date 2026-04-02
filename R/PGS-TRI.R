@@ -143,7 +143,8 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
     }
 
     rownames(res_beta)="PGS"
-    rownames(res_delta)=rownames(res_delta_centered)="Indirect_Diff_MF"
+    rownames(res_delta)="Indirect_Diff_MF"
+    rownames(res_delta_centered)="Indirect_Diff_MF_centered"
     log_L1 = sum(dnorm(pgs_c,mean= (0.5*(pgs_m+pgs_f) + res_beta[1,1] * var_fam_sum/n_family/2), sd = sqrt(var_fam_sum/n_family/2) ,log=T))
 
     res=list(Coefficients_direct=res_beta,Coefficients_indirect=res_delta,Coefficients_indirect_centered=res_delta_centered,var_fam_sum=var_fam_sum, log_LC = log_L1)
@@ -331,7 +332,8 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
 
     }
 
-    rownames(res_delta)=rownames(res_delta_centered)="Indirect_Diff_MF"
+    rownames(res_delta)="Indirect_Diff_MF"
+    rownames(res_delta_centered)="Indirect_Diff_MF_centered"
     tmp = as.numeric(t(res_beta[,1] %*% t(envir)))
     log_L1 = sum(log(1/sqrt(2*pi*var_fam_sum/n_family/2)) - 0.5*var_fam_sum/n_family/2*tmp^2 + (pgs_c - 0.5*(pgs_m+pgs_f))*tmp - (pgs_c - 0.5*(pgs_m+pgs_f))^2/(var_fam_sum/n_family))
 
