@@ -41,7 +41,9 @@ The source code for the manuscript is available in [https://github.com/ziqiaow/P
 
 ## Recent Version History
 Apr 2, 2026: Update example codes.
-Nov 24, 2023: Repository made public.
+Apr 2, 2026: Update PGS-TRI function, added PGS-TRI-centered feature for centering $\delta$-IDE using reference data.
+Nov 15, 2025: Update citation medRxiv version 2.
+Sept 18, 2024: Repository made public.
 
 # Questions
 
