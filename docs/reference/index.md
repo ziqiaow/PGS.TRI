@@ -4,6 +4,8 @@
 
 - [`function_caseonly()`](http://ziqiaow.github.io/PGS.TRI/reference/function_caseonly.md)
   : Case only analysis for PGSxE interactions
+- [`load_sim_dat()`](http://ziqiaow.github.io/PGS.TRI/reference/load_sim_dat.md)
+  : Load example dataset
 - [`PGS.TRI()`](http://ziqiaow.github.io/PGS.TRI/reference/PGS.TRI.md) :
   PGS.TRI
 - [`ptdt()`](http://ziqiaow.github.io/PGS.TRI/reference/ptdt.md) : pTDT

@@ -53,7 +53,7 @@
       <h1>Getting started with PGS.TRI</h1>
                         <h4 data-toc-skip class="author"></h4>
             
-            <h4 data-toc-skip class="date">2026-03-30</h4>
+            <h4 data-toc-skip class="date">2026-04-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ziqiaow/PGS-TRI/blob/HEAD/vignettes/PGS-TRI.Rmd" class="external-link"><code>vignettes/PGS-TRI.Rmd</code></a></small>
       <div class="d-none name"><code>PGS-TRI.Rmd</code></div>
@@ -89,6 +89,9 @@ be obtained freely online.</p>
 <div class="section level3">
 <h3 id="example-analysis">Example Analysis<a class="anchor" aria-label="anchor" href="#example-analysis"></a>
 </h3>
+<div class="section level4">
+<h4 id="direct-effect-and-gene-environment-interaction-estimation">Direct effect and gene-environment interaction estimation<a class="anchor" aria-label="anchor" href="#direct-effect-and-gene-environment-interaction-estimation"></a>
+</h4>
 <p>We provide a simple example for running our proposed method using
 simulated data. The R function of the proposed method is in <a href="https://ziqiaow.github.io/PGS.TRI/reference/PGS.TRI.html" class="external-link">PGS-TRI</a>.
 The R function to simulate data is available here <a href="https://ziqiaow.github.io/PGS.TRI/reference/sim_prospective_population.html" class="external-link">simulation</a>.
@@ -189,7 +192,104 @@ families.</p>
 <p>Print running time of PGS.TRI() function of 1000 trios.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">endTime</span> <span class="op">-</span> <span class="va">startTime</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Time difference of 0.035532 secs</span></span></code></pre>
+<pre><code><span><span class="co">## Time difference of 0.03501296 secs</span></span></code></pre>
+</div>
+<div class="section level4">
+<h4 id="indirect-effect-estimation-and-centering-estimated-indirect-effect-using-a-reference-dataset">Indirect effect estimation and centering estimated indirect effect
+using a reference dataset<a class="anchor" aria-label="anchor" href="#indirect-effect-estimation-and-centering-estimated-indirect-effect-using-a-reference-dataset"></a>
+</h4>
+<p>To analyze the asymmetric indirect parental effects, we show a simple
+example using our tool to estimate
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>δ</mi><annotation encoding="application/x-tex">\delta</annotation></semantics></math>-IDE
+(difference of parental indirect genetic effect. We first simulated data
+using existing tool <a href="https://snipar.readthedocs.io/en/latest/index.html" class="external-link">snipar</a> and
+generated
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mspace width="0.167em"></mspace><mn>000</mn></mrow><annotation encoding="application/x-tex">100\,000</annotation></semantics></math>
+families across
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1000</mn><annotation encoding="application/x-tex">1000</annotation></semantics></math>
+independent SNPs. We simulated a continuous phenotype influenced by
+direct genetic effects and assortative mating. We simulated
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>20</mn><annotation encoding="application/x-tex">20</annotation></semantics></math>
+generations of assortative mating and let the parental phenotype
+correlation to be
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.5</mn><annotation encoding="application/x-tex">0.5</annotation></semantics></math>.
+PGS of each individual is calculated using the simulated weights and
+SNPs from snipar. To simulate children’s disease status, we used the
+model including children’s PGS and parental indirect genetic effects, as
+well as mid-parental phenotype residuals after regressing out the
+parental PGS values as a family-level covariate to create an assortative
+mating effect in children’s disease outcome:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>logit</mo><mi>P</mi><mi>r</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>D</mi><mrow><mi>i</mi><mi>C</mi></mrow></msub><mo stretchy="false" form="prefix">|</mo><mi>P</mi><mi>G</mi><msub><mi>S</mi><mrow><mi>i</mi><mi>C</mi></mrow></msub><mo>,</mo><mi>P</mi><mi>G</mi><msub><mi>S</mi><mrow><mi>i</mi><mi>M</mi></mrow></msub><mo>,</mo><mi>P</mi><mi>G</mi><msub><mi>S</mi><mrow><mi>i</mi><mi>F</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mi>α</mi><mi>i</mi></msub><mo>+</mo><msub><mi>β</mi><mi>G</mi></msub><mi>P</mi><mi>G</mi><msub><mi>S</mi><mrow><mi>i</mi><mi>C</mi></mrow></msub><mo>+</mo><msub><mi>β</mi><mi>M</mi></msub><mi>P</mi><mi>G</mi><msub><mi>S</mi><mrow><mi>i</mi><mi>M</mi></mrow></msub><mo>+</mo><msub><mi>β</mi><mi>F</mi></msub><mi>P</mi><mi>G</mi><msub><mi>S</mi><mrow><mi>i</mi><mi>F</mi></mrow></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">\operatorname{logit} Pr(D_{iC} | PGS_{iC}, PGS_{iM}, PGS_{iF}) = \alpha_i + \beta_G PGS_{iC} + \beta_M PGS_{iM} + \beta_F PGS_{iF}.</annotation></semantics></math>
+Here, we let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi><mi>i</mi></msub><mo>∼</mo><mi>N</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>+</mo><mi>c</mi><mi>o</mi><msub><mi>r</mi><mi>G</mi></msub><mo>×</mo><mn>0.5</mn><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mi>e</mi><mi>s</mi><mi>i</mi><mi>d</mi><mi>u</mi><mi>a</mi><msub><mi>l</mi><mrow><mi>i</mi><mi>M</mi></mrow></msub><mo>+</mo><mi>r</mi><mi>e</mi><mi>s</mi><mi>i</mi><mi>d</mi><mi>u</mi><mi>a</mi><msub><mi>l</mi><mrow><mi>i</mi><mi>F</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha_i \sim N(\alpha + cor_G \times 0.5 (residual_{iM} + residual_{iF}), 1)</annotation></semantics></math>
+and set
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+so that the disease prevalence is fixed at around 0.01, and let the
+values of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mi>o</mi><msub><mi>r</mi><mi>G</mi></msub><mo>=</mo><mn>0.4</mn></mrow><annotation encoding="application/x-tex">cor_G = 0.4</annotation></semantics></math>
+to further incorporate assortative mating effects. For this simulation
+example, we let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>β</mi><mi>G</mi></msub><mo>=</mo><mn>0.4</mn><mo>,</mo><msub><mi>β</mi><mi>M</mi></msub><mo>=</mo><msub><mi>β</mi><mi>F</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\beta_G = 0.4, \beta_M = \beta_F = 0</annotation></semantics></math>.
+We randomly sampled
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1000</mn><annotation encoding="application/x-tex">1000</annotation></semantics></math>
+families with diseased children from the simulated data as an example
+dataset here:</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">PRS_fam_select</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_sim_dat.html">load_sim_dat</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">startTime</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">res_snipar</span> <span class="op">=</span> <span class="fu"><a href="../reference/PGS.TRI.html">PGS.TRI</a></span><span class="op">(</span>pgs_offspring <span class="op">=</span> <span class="va">PRS_fam_select</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, pgs_mother <span class="op">=</span> <span class="va">PRS_fam_select</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, pgs_father <span class="op">=</span> <span class="va">PRS_fam_select</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>, parental_indirect <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## The complete number of trios is 1000</span></span></code></pre>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">endTime</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Print the estimated direct and indirect effects:</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res_snipar</span><span class="op">$</span><span class="va">Coefficients_direct</span></span></code></pre></div>
+<pre><code><span><span class="co">##      Estimate  Std.Error  Z.value       Pvalue</span></span>
+<span><span class="co">## PGS 0.3931264 0.06858119 5.732278 9.909063e-09</span></span></code></pre>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res_snipar</span><span class="op">$</span><span class="va">Coefficients_indirect</span></span></code></pre></div>
+<pre><code><span><span class="co">##                     Estimate  Std.Error    Z.value    Pvalue</span></span>
+<span><span class="co">## Indirect_Diff_MF -0.04566616 0.06636633 -0.6880923 0.4913947</span></span></code></pre>
+<p>Print running time of PGS.TRI() function of 1000 trios for direct and
+indirect effect estimation</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">endTime</span> <span class="op">-</span> <span class="va">startTime</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Time difference of 0.001452923 secs</span></span></code></pre>
+<p>If we suspect systematic allele frequency differences between females
+and males (i.e., population-level mean PGS values differ by sex in the
+parental population, for example, due to asymmetric selection), a
+centering technique can be used for sensitivity analysis. We may use an
+external dataset to obtain the difference in PGS between women and men
+to center our estimate of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>δ</mi><annotation encoding="application/x-tex">\delta</annotation></semantics></math>-IDE.
+In our manuscript of the autism application, we used data from the UK
+Biobank unrelated EUR individuals as a reference dataset to obtain
+external estimates of female-male differences in PGS values for various
+traits for sensitivity analyses of the EUR trios in the SPARK
+consortium. The PGS should be calculated using the same procedure and
+PC-projected onto the same space as the PGS values in the family-based
+study to ensure comparability. This mean sex difference can then be
+incorporated into the PGS-TRI function to correct for potential
+bias:</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res_snipar_centered</span> <span class="op">=</span> <span class="fu"><a href="../reference/PGS.TRI.html">PGS.TRI</a></span><span class="op">(</span>pgs_offspring <span class="op">=</span> <span class="va">PRS_fam_select</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, pgs_mother <span class="op">=</span> <span class="va">PRS_fam_select</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, pgs_father <span class="op">=</span> <span class="va">PRS_fam_select</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>, parental_indirect <span class="op">=</span> <span class="cn">T</span>, parental_diff_ref <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span> <span class="co">#The parental_diff_ref is supplemented with a scalar value that is calculated from an independent large dataset of unrelated individuals with same ancestry background as the family-based study</span></span></code></pre></div>
+<pre><code><span><span class="co">## The complete number of trios is 1000</span></span></code></pre>
+<p>To print the direct, indirect, and the centered indirect effects. The
+centering analysis does not impact the original analysis of direct and
+indirect effect estimation.</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res_snipar_centered</span><span class="op">$</span><span class="va">Coefficients_direct</span></span></code></pre></div>
+<pre><code><span><span class="co">##      Estimate  Std.Error  Z.value       Pvalue</span></span>
+<span><span class="co">## PGS 0.3931264 0.06858119 5.732278 9.909063e-09</span></span></code></pre>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res_snipar_centered</span><span class="op">$</span><span class="va">Coefficients_indirect</span></span></code></pre></div>
+<pre><code><span><span class="co">##                     Estimate  Std.Error    Z.value    Pvalue</span></span>
+<span><span class="co">## Indirect_Diff_MF -0.04566616 0.06636633 -0.6880923 0.4913947</span></span></code></pre>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res_snipar_centered</span><span class="op">$</span><span class="va">Coefficients_indirect_centered</span></span></code></pre></div>
+<pre><code><span><span class="co">##                     Estimate  Std.Error    Z.value    Pvalue</span></span>
+<span><span class="co">## Indirect_Diff_MF -0.04786841 0.06636633 -0.7212754 0.4707401</span></span></code></pre>
+</div>
 </div>
 <div class="section level2">
 <h2 id="questions">Questions<a class="anchor" aria-label="anchor" href="#questions"></a>

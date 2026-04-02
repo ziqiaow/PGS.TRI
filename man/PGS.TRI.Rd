@@ -10,6 +10,7 @@ PGS.TRI(
   pgs_father,
   GxE_int = FALSE,
   parental_indirect = FALSE,
+  parental_diff_ref = 0,
   formula = ~envir1 + envir2 + factor(s1),
   E,
   side = 2,
@@ -27,6 +28,8 @@ PGS.TRI(
 
 \item{parental_indirect}{Whether to estimate potential parental indirent effect, returns an estimated difference of mother and father parental effect (delta_MF = beta_M - beta_F).}
 
+\item{parental_diff_ref}{(Optional) Supplement a reference dataset female - male PGS difference to correct for background allele frequency differences in the population for the estimation of parental indirect effect difference. We employ a large population size (such as the UK Biobank) to minimize the additional variance induced by this term.}
+
 \item{formula}{The environmental variables of interest for the PGSxE interaction effect}
 
 \item{E}{The environmental variables of interest for interaction effect. A vector of length N for one environmental variable or a data frame/data matrix of NxP for P environmental variables are allowed.}
@@ -39,6 +42,7 @@ PGS.TRI(
 A list of results of PGS.TRI
 \item{Coefficients_direct}{Results of direct PGS effect, if GxE_int is TRUE, then the result will also include PGSxE interaction effects}
 \item{Coefficients_indirect}{Results of indirect parental PGS effect difference: PGS_mother - PGS_father}
+\item{Coefficients_indirect_centered}{Results of indirect parental PGS effect difference: PGS_mother - PGS_father, after centering using a refenrece dataset of background allele frequency differences between males and females. When parental_diff_ref = 0, the result is the same as Coefficients_indirect}
 \item{var_fam}{Within-family variances for each family}
 \item{var_fam_sum}{Sum of within-family variances}
 \item{log_LC}{Log likelihood of the offspring's transmission component}

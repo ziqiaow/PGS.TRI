@@ -11,7 +11,7 @@
 
 <meta name="author" content />
 
-<meta name="date" content="2026-03-30" />
+<meta name="date" content="2026-04-02" />
 
 <title>Getting started with PGS.TRI</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">Getting started with PGS.TRI</h1>
 <h4 class="author"></h4>
-<h4 class="date">2026-03-30</h4>
+<h4 class="date">2026-04-02</h4>
 
 </div>
 
@@ -383,6 +383,8 @@ be obtained freely online.</p>
 </div>
 <div id="example-analysis" class="section level2">
 <h2>Example Analysis</h2>
+<div id="direct-effect-and-gene-environment-interaction-estimation" class="section level3">
+<h3>Direct effect and gene-environment interaction estimation</h3>
 <p>We provide a simple example for running our proposed method using
 simulated data. The R function of the proposed method is in <a href="https://ziqiaow.github.io/PGS.TRI/reference/PGS.TRI.html">PGS-TRI</a>.
 The R function to simulate data is available here <a href="https://ziqiaow.github.io/PGS.TRI/reference/sim_prospective_population.html">simulation</a>.
@@ -468,7 +470,79 @@ families.</p>
 <pre><code>## [1] 0.4369649</code></pre>
 <p>Print running time of PGS.TRI() function of 1000 trios.</p>
 <pre class="r"><code>print(endTime - startTime)</code></pre>
-<pre><code>## Time difference of 0.03169394 secs</code></pre>
+<pre><code>## Time difference of 0.03130007 secs</code></pre>
+</div>
+<div id="indirect-effect-estimation-and-centering-estimated-indirect-effect-using-a-reference-dataset" class="section level3">
+<h3>Indirect effect estimation and centering estimated indirect effect
+using a reference dataset</h3>
+<p>To analyze the asymmetric indirect parental effects, we show a simple
+example using our tool to estimate <span class="math inline">\(\delta\)</span>-IDE (difference of parental
+indirect genetic effect. We first simulated data using existing tool <a href="https://snipar.readthedocs.io/en/latest/index.html">snipar</a> and
+generated <span class="math inline">\(100\,000\)</span> families across
+<span class="math inline">\(1000\)</span> independent SNPs. We simulated
+a continuous phenotype influenced by direct genetic effects and
+assortative mating. We simulated <span class="math inline">\(20\)</span>
+generations of assortative mating and let the parental phenotype
+correlation to be <span class="math inline">\(0.5\)</span>. PGS of each
+individual is calculated using the simulated weights and SNPs from
+snipar. To simulate children’s disease status, we used the model
+including children’s PGS and parental indirect genetic effects, as well
+as mid-parental phenotype residuals after regressing out the parental
+PGS values as a family-level covariate to create an assortative mating
+effect in children’s disease outcome: <span class="math display">\[\operatorname{logit} Pr(D_{iC} | PGS_{iC},
+PGS_{iM}, PGS_{iF}) = \alpha_i + \beta_G PGS_{iC} + \beta_M PGS_{iM} +
+\beta_F PGS_{iF}.\]</span> Here, we let <span class="math inline">\(\alpha_i \sim N(\alpha + cor_G \times 0.5
+(residual_{iM} + residual_{iF}), 1)\)</span> and set <span class="math inline">\(\alpha\)</span> so that the disease prevalence is
+fixed at around 0.01, and let the values of <span class="math inline">\(cor_G = 0.4\)</span> to further incorporate
+assortative mating effects. For this simulation example, we let <span class="math inline">\(\beta_G = 0.4, \beta_M = \beta_F = 0\)</span>. We
+randomly sampled <span class="math inline">\(1000\)</span> families with
+diseased children from the simulated data as an example dataset
+here:</p>
+<pre class="r"><code>PRS_fam_select &lt;- load_sim_dat()
+startTime &lt;- Sys.time()
+res_snipar = PGS.TRI(pgs_offspring = PRS_fam_select[,1], pgs_mother = PRS_fam_select[,2], pgs_father = PRS_fam_select[,3], parental_indirect = T)</code></pre>
+<pre><code>## The complete number of trios is 1000</code></pre>
+<pre class="r"><code>endTime &lt;- Sys.time()</code></pre>
+<p>Print the estimated direct and indirect effects:</p>
+<pre class="r"><code>res_snipar$Coefficients_direct</code></pre>
+<pre><code>##      Estimate  Std.Error  Z.value       Pvalue
+## PGS 0.3931264 0.06858119 5.732278 9.909063e-09</code></pre>
+<pre class="r"><code>res_snipar$Coefficients_indirect</code></pre>
+<pre><code>##                     Estimate  Std.Error    Z.value    Pvalue
+## Indirect_Diff_MF -0.04566616 0.06636633 -0.6880923 0.4913947</code></pre>
+<p>Print running time of PGS.TRI() function of 1000 trios for direct and
+indirect effect estimation</p>
+<pre class="r"><code>print(endTime - startTime)</code></pre>
+<pre><code>## Time difference of 0.001142025 secs</code></pre>
+<p>If we suspect systematic allele frequency differences between females
+and males (i.e., population-level mean PGS values differ by sex in the
+parental population, for example, due to asymmetric selection), a
+centering technique can be used for sensitivity analysis. We may use an
+external dataset to obtain the difference in PGS between women and men
+to center our estimate of <span class="math inline">\(\delta\)</span>-IDE. In our manuscript of the
+autism application, we used data from the UK Biobank unrelated EUR
+individuals as a reference dataset to obtain external estimates of
+female-male differences in PGS values for various traits for sensitivity
+analyses of the EUR trios in the SPARK consortium. The PGS should be
+calculated using the same procedure and PC-projected onto the same space
+as the PGS values in the family-based study to ensure comparability.
+This mean sex difference can then be incorporated into the PGS-TRI
+function to correct for potential bias:</p>
+<pre class="r"><code>res_snipar_centered = PGS.TRI(pgs_offspring = PRS_fam_select[,1], pgs_mother = PRS_fam_select[,2], pgs_father = PRS_fam_select[,3], parental_indirect = T, parental_diff_ref = 0.001) #The parental_diff_ref is supplemented with a scalar value that is calculated from an independent large dataset of unrelated individuals with same ancestry background as the family-based study</code></pre>
+<pre><code>## The complete number of trios is 1000</code></pre>
+<p>To print the direct, indirect, and the centered indirect effects. The
+centering analysis does not impact the original analysis of direct and
+indirect effect estimation.</p>
+<pre class="r"><code>res_snipar_centered$Coefficients_direct</code></pre>
+<pre><code>##      Estimate  Std.Error  Z.value       Pvalue
+## PGS 0.3931264 0.06858119 5.732278 9.909063e-09</code></pre>
+<pre class="r"><code>res_snipar_centered$Coefficients_indirect</code></pre>
+<pre><code>##                     Estimate  Std.Error    Z.value    Pvalue
+## Indirect_Diff_MF -0.04566616 0.06636633 -0.6880923 0.4913947</code></pre>
+<pre class="r"><code>res_snipar_centered$Coefficients_indirect_centered</code></pre>
+<pre><code>##                     Estimate  Std.Error    Z.value    Pvalue
+## Indirect_Diff_MF -0.04786841 0.06636633 -0.7212754 0.4707401</code></pre>
+</div>
 </div>
 <div id="questions" class="section level1">
 <h1>Questions</h1>

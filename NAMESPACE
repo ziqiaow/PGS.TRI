@@ -2,6 +2,7 @@
 
 export(PGS.TRI)
 export(function_caseonly)
+export(load_sim_dat)
 export(ptdt)
 export(sim_prospective_population)
 importFrom(MASS,mvrnorm)

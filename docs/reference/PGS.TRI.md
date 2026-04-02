@@ -12,6 +12,7 @@ PGS.TRI(
   pgs_father,
   GxE_int = FALSE,
   parental_indirect = FALSE,
+  parental_diff_ref = 0,
   formula = ~envir1 + envir2 + factor(s1),
   E,
   side = 2,
@@ -48,6 +49,14 @@ PGS.TRI(
   estimated difference of mother and father parental effect (delta_MF =
   beta_M - beta_F).
 
+- parental_diff_ref:
+
+  (Optional) Supplement a reference dataset female - male PGS difference
+  to correct for background allele frequency differences in the
+  population for the estimation of parental indirect effect difference.
+  We employ a large population size (such as the UK Biobank) to minimize
+  the additional variance induced by this term.
+
 - formula:
 
   The environmental variables of interest for the PGSxE interaction
@@ -81,6 +90,13 @@ A list of results of PGS.TRI
 
   Results of indirect parental PGS effect difference: PGS_mother -
   PGS_father
+
+- Coefficients_indirect_centered:
+
+  Results of indirect parental PGS effect difference: PGS_mother -
+  PGS_father, after centering using a refenrece dataset of background
+  allele frequency differences between males and females. When
+  parental_diff_ref = 0, the result is the same as Coefficients_indirect
 
 - var_fam:
 

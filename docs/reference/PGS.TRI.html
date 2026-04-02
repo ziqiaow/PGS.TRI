@@ -45,6 +45,7 @@
 <span>  <span class="va">pgs_father</span>,</span>
 <span>  GxE_int <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  parental_indirect <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  parental_diff_ref <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  formula <span class="op">=</span> <span class="op">~</span><span class="va">envir1</span> <span class="op">+</span> <span class="va">envir2</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span>,</span>
 <span>  <span class="va">E</span>,</span>
 <span>  side <span class="op">=</span> <span class="fl">2</span>,</span>
@@ -76,6 +77,10 @@
 <dd><p>Whether to estimate potential parental indirent effect, returns an estimated difference of mother and father parental effect (delta_MF = beta_M - beta_F).</p></dd>
 
 
+<dt id="arg-parental-diff-ref">parental_diff_ref<a class="anchor" aria-label="anchor" href="#arg-parental-diff-ref"></a></dt>
+<dd><p>(Optional) Supplement a reference dataset female - male PGS difference to correct for background allele frequency differences in the population for the estimation of parental indirect effect difference. We employ a large population size (such as the UK Biobank) to minimize the additional variance induced by this term.</p></dd>
+
+
 <dt id="arg-formula">formula<a class="anchor" aria-label="anchor" href="#arg-formula"></a></dt>
 <dd><p>The environmental variables of interest for the PGSxE interaction effect</p></dd>
 
@@ -100,6 +105,9 @@
 
 <dt>Coefficients_indirect</dt>
 <dd><p>Results of indirect parental PGS effect difference: PGS_mother - PGS_father</p></dd>
+
+<dt>Coefficients_indirect_centered</dt>
+<dd><p>Results of indirect parental PGS effect difference: PGS_mother - PGS_father, after centering using a refenrece dataset of background allele frequency differences between males and females. When parental_diff_ref = 0, the result is the same as Coefficients_indirect</p></dd>
 
 <dt>var_fam</dt>
 <dd><p>Within-family variances for each family</p></dd>

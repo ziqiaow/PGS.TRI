@@ -6,6 +6,7 @@
 #' @param pgs_father The PGS values of fathers that corresponds to the children. A vector of same length N, no missing values are allowed
 #' @param GxE_int Whether there are interaction effect between pgs and environmental variables that are of interest in the model. If FALSE, then "formula" and "E" are ignored.
 #' @param parental_indirect Whether to estimate potential parental indirent effect, returns an estimated difference of mother and father parental effect (delta_MF = beta_M - beta_F).
+#' @param parental_diff_ref (Optional) Supplement a reference dataset female - male PGS difference to correct for background allele frequency differences in the population for the estimation of parental indirect effect difference. We employ a large population size (such as the UK Biobank) to minimize the additional variance induced by this term.
 #' @param formula The environmental variables of interest for the PGSxE interaction effect
 #' @param E The environmental variables of interest for interaction effect. A vector of length N for one environmental variable or a data frame/data matrix of NxP for P environmental variables are allowed.
 #' @param side Sided of the Wald test or t test, default is 2-sided.
@@ -14,6 +15,7 @@
 #' @return A list of results of PGS.TRI
 #'  \item{Coefficients_direct}{Results of direct PGS effect, if GxE_int is TRUE, then the result will also include PGSxE interaction effects}
 #'  \item{Coefficients_indirect}{Results of indirect parental PGS effect difference: PGS_mother - PGS_father}
+#'  \item{Coefficients_indirect_centered}{Results of indirect parental PGS effect difference: PGS_mother - PGS_father, after centering using a refenrece dataset of background allele frequency differences between males and females. When parental_diff_ref = 0, the result is the same as Coefficients_indirect}
 #'  \item{var_fam}{Within-family variances for each family}
 #'  \item{var_fam_sum}{Sum of within-family variances}
 #'  \item{log_LC}{Log likelihood of the offspring's transmission component}
@@ -29,6 +31,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
                    pgs_father, #The PGS values of fathers that corresponds to the children. A vector of same length N, no missing values are allowed
                    GxE_int = FALSE, #Whether there are interaction effect between pgs and environmental variables that are of interest in the model. If FALSE, then "formula" and "E" are ignored.
                    parental_indirect = FALSE, #Whether to estimate potential parental indirect effect, returns an estimated difference of mother and father parental effect (delta_MF = beta_M - beta_F).
+                   parental_diff_ref = 0, #(Optional) Supplement a reference dataset female - male PGS difference to correct for background allele frequency differences in the population for the estimation of parental indirect effect difference. We employ a large population size (such as the UK Biobank) to minimize the additional variance induced by this term.
                    formula= ~ envir1 +envir2+factor(s1), #The environmental variables of interest for the PGSxE interaction effect
                    E, #The environmental variables of interest for interaction effect. A vector of length N for one environmental variable or a data frame/data matrix of NxP for P environmental variables are allowed.
                    side = 2, #Sided of the Wald test, default is 2-sided.
@@ -108,7 +111,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
 
 
 
-  pgs.indirect=function(pgs_c,pgs_m,pgs_f,side0=2){
+  pgs.indirect=function(pgs_c,pgs_m,pgs_f,parental_diff_ref0,side0=2){
     cat(paste("The complete number of trios is",length(pgs_c),"\n"))
     n_family=length(pgs_c)
     x_bar=sum(pgs_m-pgs_f)/n_family
@@ -118,6 +121,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
     delta_mf=sum(pgs_m-pgs_f)/var_fam_sum
     var_delta=2/var_fam_sum #+ 8/(n_family-1)*delta_mf^2
     sd_delta = sqrt(var_delta)
+    delta_mf_centered = (sum(pgs_m-pgs_f)/n_family - parental_diff_ref0)/(var_fam_sum/n_family)
 
     beta_hat=2*sum(pgs_c-(pgs_m+pgs_f)/2)/var_fam_sum
     #sigma_4 = (n_family-1)/((n_family+1)*n_family)*var_fam_sum^2
@@ -128,18 +132,21 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
     if(smalltriosize == FALSE){
 
       res_beta=res.sum(parms=beta_hat, sd=sd_beta_hat, sided = side0)
-      res_delta=res.sum(parms=delta_mf, sd=sd_delta, sided= side0) } else {
+      res_delta=res.sum(parms=delta_mf, sd=sd_delta, sided= side0)
+      res_delta_centered=res.sum(parms= delta_mf_centered, sd=sd_delta, sided= side0)
+    } else {
 
-        res_beta=res.sum.t(parms=beta_hat, sd=sd_beta_hat, df0 = (length(pgs_c)-1) ,sided = side0)
-        res_delta=res.sum.t(parms=delta_mf, sd=sd_delta, df0 = (length(pgs_c)-1), sided= side0)
+      res_beta=res.sum.t(parms=beta_hat, sd=sd_beta_hat, df0 = (length(pgs_c)-1) ,sided = side0)
+      res_delta=res.sum.t(parms=delta_mf, sd=sd_delta, df0 = (length(pgs_c)-1), sided= side0)
+      res_delta_centered=res.sum.t(parms=delta_mf_centered, sd=sd_delta, df0 = (length(pgs_c)-1), sided= side0)
 
-      }
+    }
 
     rownames(res_beta)="PGS"
-    rownames(res_delta)="Indirect_Diff_MF"
+    rownames(res_delta)=rownames(res_delta_centered)="Indirect_Diff_MF"
     log_L1 = sum(dnorm(pgs_c,mean= (0.5*(pgs_m+pgs_f) + res_beta[1,1] * var_fam_sum/n_family/2), sd = sqrt(var_fam_sum/n_family/2) ,log=T))
 
-    res=list(Coefficients_direct=res_beta,Coefficients_indirect=res_delta,var_fam_sum=var_fam_sum, log_LC = log_L1)
+    res=list(Coefficients_direct=res_beta,Coefficients_indirect=res_delta,Coefficients_indirect_centered=res_delta_centered,var_fam_sum=var_fam_sum, log_LC = log_L1)
     return(res)
 
   }
@@ -232,7 +239,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
   }
 
 
-  pgs.direct.indirect.gxe=function(pgs_c,pgs_m,pgs_f,formula0,envir0,side0=2){
+  pgs.direct.indirect.gxe=function(pgs_c,pgs_m,pgs_f,formula0,envir0,parental_diff_ref0,side0=2){
 
     envir0=data.frame(envir0)
     options(na.action='na.pass')
@@ -265,6 +272,7 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
     delta_mf=sum(pgs_m-pgs_f)/var_fam_sum
     var_delta=2/var_fam_sum
     sd_delta = sqrt(var_delta)
+    delta_mf_centered = (sum(pgs_m-pgs_f)/n_family - parental_diff_ref0)/(var_fam_sum/n_family)
 
     sigma_4 = 1/12*(pgs_m-pgs_f - mean(pgs_m - pgs_f))^4*n_family^2/(n_family -1)^2
     var_fam = 1/2*(pgs_m-pgs_f - mean(pgs_m - pgs_f))^2*n_family/(n_family-1)
@@ -299,9 +307,6 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
     sd_beta_taylor = sqrt(diag(var_beta_taylor))
 
 
-
-
-
     if(dim(envir)[2]==2){
       names(beta_hat)=c("PGS",paste0("PGS x ",labels(terms(formula0)))) #"beta_pgsxE")
     } else {
@@ -316,17 +321,21 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
 
       res_beta=res.sum(parms=beta_hat,sd=sd_beta_taylor,sided = side0)
       res_delta=res.sum(parms=delta_mf, sd=sd_delta, sided= side0)
+      res_delta_centered=res.sum(parms= delta_mf_centered, sd=sd_delta, sided= side0)
+
     } else {
+
       res_beta=res.sum.t(parms=beta_hat,sd=sd_beta_taylor,df0 = (length(pgs_c)-1) ,sided = side0)
       res_delta=res.sum.t(parms=delta_mf, sd=sd_delta, df0 = (length(pgs_c)-1), sided= side0)
+      res_delta_centered=res.sum.t(parms=delta_mf_centered, sd=sd_delta, df0 = (length(pgs_c)-1), sided= side0)
 
     }
 
-    rownames(res_delta)="Indirect_Diff_MF"
+    rownames(res_delta)=rownames(res_delta_centered)="Indirect_Diff_MF"
     tmp = as.numeric(t(res_beta[,1] %*% t(envir)))
     log_L1 = sum(log(1/sqrt(2*pi*var_fam_sum/n_family/2)) - 0.5*var_fam_sum/n_family/2*tmp^2 + (pgs_c - 0.5*(pgs_m+pgs_f))*tmp - (pgs_c - 0.5*(pgs_m+pgs_f))^2/(var_fam_sum/n_family))
 
-    res=list(Coefficients_direct=res_beta,Coefficients_indirect=res_delta,var_fam_sum=var_fam_sum, vcov = var_beta_taylor, log_LC = log_L1)
+    res=list(Coefficients_direct=res_beta,Coefficients_indirect=res_delta,Coefficients_indirect_centered=res_delta_centered,var_fam_sum=var_fam_sum, vcov = var_beta_taylor, log_LC = log_L1)
     return(res)
 
   }
@@ -336,36 +345,38 @@ PGS.TRI = function(pgs_offspring, #The PGS values of the affected probands (chil
 
     if (GxE_int == FALSE){
       pgs.indirect(pgs_c = pgs_offspring,
-                      pgs_m = pgs_mother,
-                      pgs_f = pgs_father,
-                      side0 = side)
+                   pgs_m = pgs_mother,
+                   pgs_f = pgs_father,
+                   parental_diff_ref0 = parental_diff_ref,
+                   side0 = side)
 
     } else {
 
       pgs.direct.indirect.gxe(pgs_c = pgs_offspring,
-                          pgs_m = pgs_mother,
-                          pgs_f = pgs_father,
-                          formula0 = formula,
-                          envir0 = E,
-                          side0 = side)
+                              pgs_m = pgs_mother,
+                              pgs_f = pgs_father,
+                              formula0 = formula,
+                              envir0 = E,
+                              parental_diff_ref0 = parental_diff_ref,
+                              side0 = side)
 
     }
 
   } else if (GxE_int == FALSE){
 
     pgs.direct(pgs_c = pgs_offspring,
-            pgs_m = pgs_mother,
-            pgs_f = pgs_father,
-            side0 = side)
+               pgs_m = pgs_mother,
+               pgs_f = pgs_father,
+               side0 = side)
 
   } else {
 
     pgs.direct.gxe(pgs_c = pgs_offspring,
-                pgs_m = pgs_mother,
-                pgs_f = pgs_father,
-                formula0 = formula,
-                envir0 = E,
-                side0 = side)
+                   pgs_m = pgs_mother,
+                   pgs_f = pgs_father,
+                   formula0 = formula,
+                   envir0 = E,
+                   side0 = side)
 
   }
 
