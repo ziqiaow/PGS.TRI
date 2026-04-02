@@ -175,7 +175,7 @@ Print running time of PGS.TRI() function of 1000 trios.
 print(endTime - startTime)
 ```
 
-    ## Time difference of 0.1335402 secs
+    ## Time difference of 0.1503928 secs
 
 #### Indirect effect estimation and centering estimated indirect effect using a reference dataset
 
@@ -238,7 +238,7 @@ indirect effect estimation
 print(endTime - startTime)
 ```
 
-    ## Time difference of 0.001122236 secs
+    ## Time difference of 0.00103426 secs
 
 If we suspect systematic allele frequency differences between females
 and males (i.e., population-level mean PGS values differ by sex in the
