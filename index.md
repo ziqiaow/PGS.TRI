@@ -22,16 +22,17 @@ structure, assortative mating, and indirect genetic effects.
 The source code for the manuscript is available in
 <https://github.com/ziqiaow/PGS-TRI-Analysis>.
 
+The full tutorial of PGS.TRI package and data examples are in this
+website <https://ziqiaow.github.io/PGS.TRI/>.
+
+------------------------------------------------------------------------
+
 ## Run PGS-TRI in R
 
-The full tutorial of PGS.TRI package and data examples are in this
-website <https://ziqiaow.github.io/PGS.TRI/>. An interactive R tutorial
-with examples is provided at: [Get
-started](https://ziqiaow.github.io/PGS.TRI/articles/PGS-TRI.html).
-
-### Installation in R
-
-The package can be easily installed from Github
+PGS-TRI can be run in an R session. An interactive R tutorial with
+examples is provided at: [Get
+started](https://ziqiaow.github.io/PGS.TRI/articles/PGS-TRI.html). \###
+Installation in R The package can be easily installed from Github
 
 ``` R
 library(devtools)
@@ -51,10 +52,13 @@ source("./R/PGS-TRI.R")
 source("./R/simulation.R")
 ```
 
+------------------------------------------------------------------------
+
 ## Run PGS-TRI from Command Line
 
 PGS-TRI can also be run directly from the command line without starting
-an R session. Example codes for running PGS-TRI using command line:
+an R session. Below are example codes for running PGS-TRI using command
+line. \### Getting Started
 
 ``` bash
 # Download or clone this GitHub repository by 
@@ -63,10 +67,6 @@ git clone https://github.com/ziqiaow/PGS.TRI.git
 # Go to the directory
 cd PGS.TRI
 ```
-
-------------------------------------------------------------------------
-
-## Usage Examples using Command Line
 
 ### Test with example data
 
