@@ -1,0 +1,24 @@
+PGS-TRI Analysis Results
+========================
+
+Input file: inst/extdata/testdat_snipar.txt 
+Date: 2026-04-03 12:41:20 
+
+Direct Effects:
+---------------
+     Estimate  Std.Error  Z.value       Pvalue
+PGS 0.3931264 0.06858119 5.732278 9.909063e-09
+
+Parental Indirect Effects:
+--------------------------
+                    Estimate  Std.Error    Z.value    Pvalue
+Indirect_Diff_MF -0.04566616 0.06636633 -0.6880923 0.4913947
+
+Parental Indirect Effects (Centered):
+-------------------------------------
+                             Estimate  Std.Error    Z.value    Pvalue
+Indirect_Diff_MF_centered -0.04566616 0.06636633 -0.6880923 0.4913947
+
+Log-Likelihood:
+---------------
+Log LC: -707.4018 

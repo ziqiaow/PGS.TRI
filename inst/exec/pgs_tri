@@ -1,0 +1,220 @@
+#!/usr/bin/env Rscript
+
+suppressPackageStartupMessages({
+  library(PGS.TRI)
+  library(optparse)
+})
+
+option_list <- list(
+  make_option(c("-i", "--input"), type = "character",
+              help = "Input file with family PGS data (required)", metavar = "FILE"),
+  make_option(c("-o", "--output"), type = "character",
+              help = "Output file path (required)", metavar = "FILE"),
+  make_option(c("--gxe"), action = "store_true", default = FALSE,
+              help = "Estimate gene-environment interactions [default: %default]"),
+  make_option(c("--parental-indirect"), action = "store_true", default = FALSE,
+              help = "Estimate parental indirect effects [default: %default]"),
+  make_option(c("--parental-diff-ref"), type = "numeric", default = 0,
+              help = "Reference population female-male PGS difference [default: %default]"),
+  make_option(c("-e", "--envir"), type = "character", default = NULL,
+              help = "Environmental variable column names (comma-separated)", metavar = "VARS"),
+  make_option(c("-f", "--formula"), type = "character", default = NULL,
+              help = "R formula for environmental variables (e.g., '~ envir1 + envir2')", metavar = "FORMULA"),
+  make_option(c("--side"), type = "integer", default = 2,
+              help = "Sided test: 1 or 2 [default: %default]"),
+  make_option(c("--small-trio"), action = "store_true", default = FALSE,
+              help = "Use t-test for small sample size (<100) [default: %default]"),
+  make_option(c("--sep"), type = "character", default = "\t",
+              help = "Field separator [default: tab]"),
+  make_option(c("--header"), action = "store_true", default = TRUE,
+              help = "Input file has header [default: %default]"),
+  make_option(c("--offspring-col"), type = "character", default = "pgs_c",
+              help = "Offspring PGS column name [default: %default]"),
+  make_option(c("--mother-col"), type = "character", default = "pgs_m",
+              help = "Mother PGS column name [default: %default]"),
+  make_option(c("--father-col"), type = "character", default = "pgs_f",
+              help = "Father PGS column name [default: %default]"),
+  make_option(c("--save-rds"), action = "store_true", default = TRUE,
+              help = "Save full results as RDS file"),
+  make_option(c("-v", "--verbose"), action = "store_true", default = TRUE,
+              help = "Print verbose output"),
+  make_option(c("--version"), action = "store_true", default = TRUE,
+              help = "Print version and exit")
+)
+
+opt_parser <- OptionParser(
+  option_list = option_list,
+  description = "\nPGS-TRI: A unified framework for the estimation of polygenic direct
+    effect, indirect effect, and GxE interactions in case-parent trio
+    studies\n",
+  epilogue = paste(
+    "Examples:",
+    "  pgs_tri -i family_data.txt -o results.txt",
+    "  pgs_tri -i data.txt -o results.txt --parental-indirect -v",
+    "  pgs_tri -i data.txt -o results.txt --gxe -e 'age,sex' -f '~ age + factor(sex)'",
+    "", sep = "\n"
+  )
+)
+
+opt <- parse_args(opt_parser)
+
+if (opt$version) {
+  cat("PGS.TRI version", as.character(packageVersion("PGS.TRI")), "\n")
+  quit(status = 0)
+}
+
+if (is.null(opt$input) || is.null(opt$output)) {
+  cat("Error: Both --input and --output are required\n\n")
+  print_help(opt_parser)
+  quit(status = 1)
+}
+
+if (!file.exists(opt$input)) {
+  cat("Error: Input file not found:", opt$input, "\n")
+  quit(status = 1)
+}
+
+if (opt$gxe && (is.null(opt$envir) || is.null(opt$formula))) {
+  cat("Error: --gxe requires both --envir and --formula\n")
+  quit(status = 1)
+}
+
+if (opt$verbose) {
+  cat("═══════════════════════════════════════\n")
+  cat("PGS-TRI Analysis\n")
+  cat("═══════════════════════════════════════\n")
+  cat("Input:  ", opt$input, "\n")
+  cat("Output: ", opt$output, "\n")
+  cat("═══════════════════════════════════════\n\n")
+}
+
+if (opt$verbose) cat("Loading data...\n")
+
+tryCatch({
+  data <- read.table(opt$input, header = opt$header, stringsAsFactors = FALSE)
+}, error = function(e) {
+  cat("Error reading input:", conditionMessage(e), "\n")
+  quit(status = 1)
+})
+
+if (opt$verbose) cat("  Loaded", nrow(data), "families\n\n")
+
+if (!opt$`offspring-col` %in% colnames(data)) {
+  cat("Error: Column", opt$`offspring-col`, "not found\n")
+  quit(status = 1)
+}
+if (!opt$`mother-col` %in% colnames(data)) {
+  cat("Error: Column", opt$`mother-col`, "not found\n")
+  quit(status = 1)
+}
+if (!opt$`father-col` %in% colnames(data)) {
+  cat("Error: Column", opt$`father-col`, "not found\n")
+  quit(status = 1)
+}
+
+pgs_offspring <- data[[opt$`offspring-col`]]
+pgs_mother <- data[[opt$`mother-col`]]
+pgs_father <- data[[opt$`father-col`]]
+
+E <- NULL
+formula_obj <- NULL
+
+if (opt$gxe) {
+  if (opt$verbose) cat("Preparing environmental variables...\n")
+
+  envir_vars <- strsplit(opt$envir, ",")[[1]]
+  envir_vars <- trimws(envir_vars)
+
+  missing_vars <- envir_vars[!envir_vars %in% colnames(data)]
+  if (length(missing_vars) > 0) {
+    cat("Error: Variables not found:", paste(missing_vars, collapse = ", "), "\n")
+    quit(status = 1)
+  }
+
+  E <- data[, envir_vars, drop = FALSE]
+
+  tryCatch({
+    formula_obj <- as.formula(opt$formula)
+  }, error = function(e) {
+    cat("Error parsing formula:", conditionMessage(e), "\n")
+    quit(status = 1)
+  })
+
+  if (opt$verbose) {
+    cat("  Variables:", paste(envir_vars, collapse = ", "), "\n")
+    cat("  Formula:", deparse(formula_obj), "\n\n")
+  }
+}
+
+if (opt$verbose) cat("Running PGS-TRI analysis...\n\n")
+
+tryCatch({
+  result <- PGS.TRI(
+    pgs_offspring = pgs_offspring,
+    pgs_mother = pgs_mother,
+    pgs_father = pgs_father,
+    GxE_int = opt$gxe,
+    parental_indirect = opt$`parental-indirect`,
+    parental_diff_ref = opt$`parental-diff-ref`,
+    formula = formula_obj,
+    E = E,
+    side = opt$side,
+    smalltriosize = opt$`small-trio`
+  )
+}, error = function(e) {
+  cat("Error during analysis:", conditionMessage(e), "\n")
+  quit(status = 1)
+})
+
+if (opt$verbose) cat("\nSaving results...\n")
+
+sink(opt$output)
+cat("PGS-TRI Analysis Results\n")
+cat("========================\n\n")
+cat("Input file:", opt$input, "\n")
+cat("Date:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "\n\n")
+
+cat("Direct Effects:\n")
+cat("---------------\n")
+print(result$Coefficients_direct)
+cat("\n")
+
+if (opt$`parental-indirect`) {
+  cat("Parental Indirect Effects:\n")
+  cat("--------------------------\n")
+  print(result$Coefficients_indirect)
+  cat("\n")
+
+  cat("Parental Indirect Effects (Centered):\n")
+  cat("-------------------------------------\n")
+  print(result$Coefficients_indirect_centered)
+  cat("\n")
+}
+
+if (!is.null(result$vcov)) {
+  cat("Variance-Covariance Matrix:\n")
+  cat("---------------------------\n")
+  print(result$vcov)
+  cat("\n")
+}
+
+cat("Log-Likelihood:\n")
+cat("---------------\n")
+cat("Log LC:", result$log_LC, "\n")
+if (!is.null(result$log_LP_profile)) {
+  cat("Log LP:", result$log_LP_profile, "\n")
+}
+if (!is.null(result$log_likelihood)) {
+  cat("Total:", result$log_likelihood, "\n")
+}
+
+sink()
+
+if (opt$`save-rds`) {
+  rds_file <- sub("\\.[^.]*$", ".rds", opt$output)
+  saveRDS(result, rds_file)
+  if (opt$verbose) cat("  RDS saved to:", rds_file, "\n")
+}
+
+cat("\n✓ Analysis complete!\n")
+cat("  Results saved to:", opt$output, "\n")
