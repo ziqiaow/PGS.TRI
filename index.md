@@ -119,7 +119,7 @@ Rscript inst/exec/pgs_tri \
 ## Command Line Options
 
     Required:
-      --input FILE              Input file with family PGS data
+      --input FILE              Input file, see format below. Each row presents a family, each column represents the PGS values of child, mother, father, respectively; if GxE interactions analysis is required, then environmental variables can also be included in the same .txt file
       --output FILE             Output file path
 
     Analysis Options:
@@ -150,7 +150,7 @@ Rscript inst/exec/pgs_tri \
 
 Tab-delimited file with family PGS data:
 
-    pgs_offspring   pgs_mother  pgs_father  age sex
+    pgs_c   pgs_m   pgs_f   age sex
     0.523   0.412   0.389   45  1
     0.678   0.534   0.621   52  0
     0.234   0.289   0.198   38  1

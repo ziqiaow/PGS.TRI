@@ -145,7 +145,7 @@
 <h2 id="command-line-options">Command Line Options<a class="anchor" aria-label="anchor" href="#command-line-options"></a>
 </h2>
 <pre><code>Required:
-  --input FILE              Input file with family PGS data
+  --input FILE              Input file, see format below. Each row presents a family, each column represents the PGS values of child, mother, father, respectively; if GxE interactions analysis is required, then environmental variables can also be included in the same .txt file
   --output FILE             Output file path
 
 Analysis Options:
@@ -175,7 +175,7 @@ Output Options:
 <h2 id="input-file-format">Input File Format<a class="anchor" aria-label="anchor" href="#input-file-format"></a>
 </h2>
 <p>Tab-delimited file with family PGS data:</p>
-<pre><code>pgs_offspring   pgs_mother  pgs_father  age sex
+<pre><code>pgs_c   pgs_m   pgs_f   age sex
 0.523   0.412   0.389   45  1
 0.678   0.534   0.621   52  0
 0.234   0.289   0.198   38  1</code></pre>
