@@ -60,6 +60,7 @@
 <li>June 17, 2025: Update citation medRxiv version 2.</li>
 <li>Sept 18, 2024: Repository made public.</li>
 </ul>
+<p>The source code for the manuscript is available in <a href="https://github.com/ziqiaow/PGS-TRI-Analysis" class="external-link">https://github.com/ziqiaow/PGS-TRI-Analysis</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -78,10 +79,9 @@
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"./R/simulation.R"</span>)</span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="tutorial">Tutorial<a class="anchor" aria-label="anchor" href="#tutorial"></a>
+<h2 id="run-pgs-tri-in-r">Run PGS-TRI in R<a class="anchor" aria-label="anchor" href="#run-pgs-tri-in-r"></a>
 </h2>
-<p>The full tutorial of PGS.TRI package and data examples to run within R are in this website <a href="https://ziqiaow.github.io/PGS.TRI/">https://ziqiaow.github.io/PGS.TRI/</a>.</p>
-<p>The source code for the manuscript is available in <a href="https://github.com/ziqiaow/PGS-TRI-Analysis" class="external-link">https://github.com/ziqiaow/PGS-TRI-Analysis</a>.</p>
+<p>The full tutorial of PGS.TRI package and data examples to run in R are in this website <a href="https://ziqiaow.github.io/PGS.TRI/">https://ziqiaow.github.io/PGS.TRI/</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="run-pgs-tri-from-command-line">Run PGS-TRI from Command Line<a class="anchor" aria-label="anchor" href="#run-pgs-tri-from-command-line"></a>
@@ -94,7 +94,7 @@
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="bu">cd</span> PGS.TRI</span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Install dependency (first time only)</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"install.packages('optparse')"</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"install.packages('optparse','data.table')"</span></span>
 <span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a></span>
 <span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co"># Run analysis</span></span>
 <span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="ex">Rscript</span> inst/exec/pgs_tri <span class="at">--input</span> data.txt <span class="at">--output</span> results.txt <span class="at">--verbose</span></span></code></pre></div>

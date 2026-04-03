@@ -19,6 +19,9 @@ structure, assortative mating, and indirect genetic effects.
 - June 17, 2025: Update citation medRxiv version 2.
 - Sept 18, 2024: Repository made public.
 
+The source code for the manuscript is available in
+<https://github.com/ziqiaow/PGS-TRI-Analysis>.
+
 ## Installation
 
 The package can be easily installed from Github
@@ -41,13 +44,10 @@ source("./R/PGS-TRI.R")
 source("./R/simulation.R")
 ```
 
-## Tutorial
+## Run PGS-TRI in R
 
-The full tutorial of PGS.TRI package and data examples to run within R
-are in this website <https://ziqiaow.github.io/PGS.TRI/>.
-
-The source code for the manuscript is available in
-<https://github.com/ziqiaow/PGS-TRI-Analysis>.
+The full tutorial of PGS.TRI package and data examples to run in R are
+in this website <https://ziqiaow.github.io/PGS.TRI/>.
 
 ## Run PGS-TRI from Command Line
 
@@ -61,7 +61,7 @@ git clone https://github.com/ziqiaow/PGS.TRI.git
 cd PGS.TRI
 
 # Install dependency (first time only)
-Rscript -e "install.packages('optparse')"
+Rscript -e "install.packages('optparse','data.table')"
 
 # Run analysis
 Rscript inst/exec/pgs_tri --input data.txt --output results.txt --verbose
