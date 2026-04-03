@@ -104,7 +104,7 @@ Rscript ${path_to_package}/PGS.TRI/inst/pgs_tri --input ${path_to_data}/data.txt
 ```
 
 ### Full model
-Specify the column names from your input .txt file for child (--offspring-col), mother (--mother-col), and father (--father-col).
+Specify the column names from your input .txt file for child (--offspring-col), mother (--mother-col), and father (--father-col), for GxE interaction analysis, the column names for E variables should be specified in --envir and --formula.
 ```bash
 Rscript ${path_to_package}/inst/pgs_tri \
   --input ${path_to_data}/data.txt \
