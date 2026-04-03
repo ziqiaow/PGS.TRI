@@ -63,7 +63,8 @@ cd PGS.TRI
 ```
 
 ### Test with example data
-Input the column names of your input data .txt file for child (--offspring-col), mother (--mother-col), father (--father-col). Replace path_to_package, path_to_data, path_to_result with your own directory paths.
+Specify the column names from your input data .txt file for the following parameters: child (--offspring-col), mother (--mother-col), and father (--father-col). Replace path_to_package, path_to_data, and path_to_result with your own directory paths.
+
 ```bash
 path_to_package='/dcs04/nilanjan/data/zwang/tools/PGS.TRI'
 path_to_data='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'
