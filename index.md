@@ -129,8 +129,6 @@ Rscript inst/pgs_tri \
       --small-trio              Use t-test for small samples (<100)
 
     Input Format:
-      --sep CHAR                Field separator [default: tab]
-      --header                  Input has header [default: TRUE]
       --offspring-col NAME      Offspring PGS column [default: pgs_c]
       --mother-col NAME         Mother PGS column [default: pgs_m]
       --father-col NAME         Father PGS column [default: pgs_f]
