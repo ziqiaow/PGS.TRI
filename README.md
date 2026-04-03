@@ -63,14 +63,15 @@ cd PGS.TRI
 ```
 
 ### Test with example data
-Input the column names for child (--offspring-col), mother (--mother-col), father (--father-col)
+Input the column names for child (--offspring-col), mother (--mother-col), father (--father-col). Replace path_to_package, path_to_data, path_to_result with your own directory paths.
 ```bash
 path_to_package='/dcs04/nilanjan/data/zwang/tools/PGS.TRI'
 path_to_data='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'
+path_to_result='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'
 
 Rscript ${path_to_package}/inst/pgs_tri \
   --input ${path_to_data}/testdat_snipar.txt \
-  --output ${path_to_data}/test_results.txt \
+  --output ${path_to_result}/test_results.txt \
   --offspring-col pgs_c \
   --mother-col pgs_m \
   --father-col pgs_f \
@@ -82,7 +83,7 @@ If we want to test for indirect effect, and also center by a reference data (suc
 ```bash
 Rscript ${path_to_package}/inst/pgs_tri \
   --input ${path_to_data}/testdat_snipar.txt \
-  --output ${path_to_data}/test_results.txt \
+  --output ${path_to_result}/test_results.txt \
   --offspring-col pgs_c \
   --mother-col pgs_m \
   --father-col pgs_f \
@@ -95,15 +96,15 @@ Rscript ${path_to_package}/inst/pgs_tri \
 ### Basic analysis
 
 ```bash
-Rscript inst/pgs_tri --input data.txt --output results.txt
+Rscript ${path_to_package}/inst/pgs_tri --input ${path_to_data}/data.txt --output ${path_to_result}/results.txt
 ```
 
 ### Full model
 
 ```bash
-Rscript inst/pgs_tri \
-  --input data.txt \
-  --output results.txt \
+Rscript ${path_to_package}/inst/pgs_tri \
+  --input ${path_to_data}/data.txt \
+  --output ${path_to_result}/results.txt \
   --offspring-col pgs_c \
   --mother-col pgs_m \
   --father-col pgs_f
