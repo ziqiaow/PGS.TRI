@@ -147,7 +147,6 @@ Output Options:
   --help                    Show this help message
 ```
 
----
 
 ## Input File Format
 
