@@ -3,7 +3,7 @@ pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   PGS-TRI: PGS-TRI.html
-last_built: 2026-04-03T20:37Z
+last_built: 2026-04-03T20:38Z
 urls:
   reference: https://ziqiaow.github.io/PGS.TRI/reference
   article: https://ziqiaow.github.io/PGS.TRI/articles
