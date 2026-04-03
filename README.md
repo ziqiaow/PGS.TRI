@@ -75,7 +75,7 @@ Rscript ${package}/inst/pgs_tri \
   --offspring-col pgs_c \
   --mother-col pgs_m \
   --father-col pgs_f \
-  --save_rds \
+  --save-rds \
   --verbose
 ```
 
@@ -99,8 +99,8 @@ Rscript inst/pgs_tri \
   --parental-diff-ref 0 \
   --envir age,sex,bmi \
   --formula '~ age + factor(sex) + bmi' \
-  --small_trio \
-  --save_rds \
+  --small-trio \
+  --save-rds \
   --verbose
 ```
 
