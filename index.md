@@ -66,22 +66,23 @@ git clone https://github.com/ziqiaow/PGS.TRI.git
 
 # Go to the directory
 cd PGS.TRI
+
+# Load R (if not already loaded)
+module load R
 ```
 
 ### Test with example data
 
-Specify the column names from your input data .txt file for the
-following parameters: child (–offspring-col), mother (–mother-col), and
-father (–father-col). Replace path_to_package, path_to_data, and
-path_to_result with your own directory paths.
+Below is a toy example. Replace path_to_package, and path_to_result with
+your own directory paths. The example data is saved in the repository
+~/PGS.TRI/inst/extdata/testdat_snipar.txt.
 
 ``` bash
-path_to_package='/dcs04/nilanjan/data/zwang/tools/PGS.TRI'
-path_to_data='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'
-path_to_result='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'
+path_to_package='/dcs04/nilanjan/data/zwang/tools'
+path_to_result='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata'
 
-Rscript ${path_to_package}/inst/pgs_tri \
-  --input ${path_to_data}/testdat_snipar.txt \
+Rscript ${path_to_package}/PGS.TRI/inst/pgs_tri \
+  --input ${path_to_package}/PGS.TRI/inst/extdata/testdat_snipar.txt \
   --output ${path_to_result}/test_results.txt \
   --offspring-col pgs_c \
   --mother-col pgs_m \
@@ -90,13 +91,16 @@ Rscript ${path_to_package}/inst/pgs_tri \
   --verbose
 ```
 
+The result output (.txt output and .rds file) will be saved in
+path_to_result.
+
 If we want to test for indirect effect, and also center by a reference
 data (such as the UK Biobank) female-male PGS value difference of
 0.0001:
 
 ``` bash
-Rscript ${path_to_package}/inst/pgs_tri \
-  --input ${path_to_data}/testdat_snipar.txt \
+Rscript ${path_to_package}/PGS.TRI/inst/pgs_tri \
+  --input ${path_to_package}/PGS.TRI/inst/extdata/testdat_snipar.txt \
   --output ${path_to_result}/test_results.txt \
   --offspring-col pgs_c \
   --mother-col pgs_m \
@@ -109,11 +113,17 @@ Rscript ${path_to_package}/inst/pgs_tri \
 
 ### Basic analysis
 
+Replace path_to_package, path_to_data, and path_to_result with your own
+directory paths.
+
 ``` bash
-Rscript ${path_to_package}/inst/pgs_tri --input ${path_to_data}/data.txt --output ${path_to_result}/results.txt
+Rscript ${path_to_package}/PGS.TRI/inst/pgs_tri --input ${path_to_data}/data.txt --output ${path_to_result}/results.txt
 ```
 
 ### Full model
+
+Specify the column names from your input .txt file for child
+(–offspring-col), mother (–mother-col), and father (–father-col).
 
 ``` bash
 Rscript ${path_to_package}/inst/pgs_tri \
@@ -121,7 +131,7 @@ Rscript ${path_to_package}/inst/pgs_tri \
   --output ${path_to_result}/results.txt \
   --offspring-col pgs_c \
   --mother-col pgs_m \
-  --father-col pgs_f
+  --father-col pgs_f \
   --gxe \
   --parental-indirect \
   --parental-diff-ref 0 \
