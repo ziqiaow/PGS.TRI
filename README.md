@@ -80,7 +80,7 @@ Rscript ${path_to_package}/PGS.TRI/inst/pgs_tri \
   --save-rds \
   --verbose
 ```
-The result output (.txt output and .rds file) will be saved in path_to_result.
+
 
 If we want to test for indirect effect, and also center by a reference data (such as the UK Biobank) female-male PGS value difference of 0.0001:
 ```bash
@@ -95,7 +95,7 @@ Rscript ${path_to_package}/PGS.TRI/inst/pgs_tri \
   --save-rds \
   --verbose
 ```
-
+The result output (.txt output and .rds file) will be saved in path_to_result.
 
 ### Basic analysis
 Replace path_to_package, path_to_data, and path_to_result with your own directory paths. 
