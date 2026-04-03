@@ -62,9 +62,6 @@ git clone https://github.com/ziqiaow/PGS.TRI.git
 
 # Go to the directory
 cd PGS.TRI
-
-# Install dependency (first time only)
-Rscript -e "install.packages('optparse','data.table')"
 ```
 
 ------------------------------------------------------------------------
@@ -73,12 +70,13 @@ Rscript -e "install.packages('optparse','data.table')"
 
 ### Test with example data
 
-Custom column names:
-
 ``` bash
-Rscript inst/exec/pgs_tri \
-  --input inst/extdata/testdat_snipar.txt \
-  --output test_results.txt \
+package='/dcs04/nilanjan/data/zwang/tools/PGS.TRI'
+path_example='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'
+
+Rscript ${package}/inst/exec/pgs_tri \
+  --input ${path_example}/testdat_snipar.txt \
+  --output ${path_example}/test_results.txt \
   --offspring_col pgs_c \
   --mother_col pgs_m \
   --father_col pgs_f \

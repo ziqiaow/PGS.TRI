@@ -91,10 +91,7 @@
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ziqiaow/PGS.TRI.git</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Go to the directory</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="bu">cd</span> PGS.TRI</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Install dependency (first time only)</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"install.packages('optparse','data.table')"</span></span></code></pre></div>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="bu">cd</span> PGS.TRI</span></code></pre></div>
 <hr>
 </div>
 <div class="section level2">
@@ -103,15 +100,17 @@
 <div class="section level3">
 <h3 id="test-with-example-data">Test with example data<a class="anchor" aria-label="anchor" href="#test-with-example-data"></a>
 </h3>
-<p>Custom column names:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">Rscript</span> inst/exec/pgs_tri <span class="dt">\</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="at">--input</span> inst/extdata/testdat_snipar.txt <span class="dt">\</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="at">--output</span> test_results.txt <span class="dt">\</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="at">--offspring_col</span> pgs_c <span class="dt">\</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">--mother_col</span> pgs_m <span class="dt">\</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="at">--father_col</span> pgs_f <span class="dt">\</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="at">--save_rds</span> <span class="dt">\</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  <span class="at">--verbose</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="va">package</span><span class="op">=</span><span class="st">'/dcs04/nilanjan/data/zwang/tools/PGS.TRI'</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="va">path_example</span><span class="op">=</span><span class="st">'/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">Rscript</span> <span class="va">${package}</span>/inst/exec/pgs_tri <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">--input</span> <span class="va">${path_example}</span>/testdat_snipar.txt <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="at">--output</span> <span class="va">${path_example}</span>/test_results.txt <span class="dt">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="at">--offspring_col</span> pgs_c <span class="dt">\</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  <span class="at">--mother_col</span> pgs_m <span class="dt">\</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>  <span class="at">--father_col</span> pgs_f <span class="dt">\</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>  <span class="at">--save_rds</span> <span class="dt">\</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>  <span class="at">--verbose</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="basic-analysis">Basic analysis<a class="anchor" aria-label="anchor" href="#basic-analysis"></a>
