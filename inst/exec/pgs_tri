@@ -1,10 +1,48 @@
 #!/usr/bin/env Rscript
 
+# PGS-TRI Command Line Interface
+
+# Determine package location
+script_path <- normalizePath(sys.frame(1)$ofile, mustWork = FALSE)
+pkg_root <- dirname(dirname(dirname(script_path)))  # Go up from inst/exec/
+
+# Function to ensure package is installed
+ensure_package <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    cat("Installing required package:", pkg, "...\n")
+    install.packages(pkg, repos = "https://cloud.r-project.org/", quiet = TRUE)
+    if (!requireNamespace(pkg, quietly = TRUE)) {
+      stop("Failed to install package: ", pkg)
+    }
+    cat("✓ Package", pkg, "installed successfully\n\n")
+  }
+}
+
+# Ensure dependencies are available
+ensure_package("data.table")
+ensure_package("optparse")
+
 suppressPackageStartupMessages({
-  library(PGS.TRI)
   library(data.table)
   library(optparse)
 })
+
+# Load PGS.TRI functions
+if (file.exists(file.path(pkg_root, "R", "PGS-TRI.R"))) {
+  # Running from source directory (after git clone)
+  cat("Loading PGS.TRI from source directory...\n\n")
+  r_files <- list.files(file.path(pkg_root, "R"), pattern = "\\.R$", full.names = TRUE)
+  for (f in r_files) {
+    source(f)
+  }
+} else if (requireNamespace("PGS.TRI", quietly = TRUE)) {
+  # Use installed package
+  suppressPackageStartupMessages(library(PGS.TRI))
+} else {
+  stop("PGS.TRI not found. Please run from package directory or install with:\n",
+       "  devtools::install_github('ziqiaow/PGS.TRI')")
+}
+
 
 option_list <- list(
   make_option(c("-i", "--input"), type = "character",
