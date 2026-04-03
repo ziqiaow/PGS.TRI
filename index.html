@@ -101,12 +101,12 @@
 <h3 id="test-with-example-data">Test with example data<a class="anchor" aria-label="anchor" href="#test-with-example-data"></a>
 </h3>
 <p>Input the column names for child, mother, father under command</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="va">package</span><span class="op">=</span><span class="st">'/dcs04/nilanjan/data/zwang/tools/PGS.TRI'</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="va">path_example</span><span class="op">=</span><span class="st">'/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="va">path_to_package</span><span class="op">=</span><span class="st">'/dcs04/nilanjan/data/zwang/tools/PGS.TRI'</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="va">path_to_example</span><span class="op">=</span><span class="st">'/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'</span></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">Rscript</span> <span class="va">${package}</span>/inst/pgs_tri <span class="dt">\</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">--input</span> <span class="va">${path_example}</span>/testdat_snipar.txt <span class="dt">\</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="at">--output</span> <span class="va">${path_example}</span>/test_results.txt <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">Rscript</span> <span class="va">${path_to_package}</span>/inst/pgs_tri <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">--input</span> <span class="va">${path_to_example}</span>/testdat_snipar.txt <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="at">--output</span> <span class="va">${path_to_example}</span>/test_results.txt <span class="dt">\</span></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="at">--offspring-col</span> pgs_c <span class="dt">\</span></span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  <span class="at">--mother-col</span> pgs_m <span class="dt">\</span></span>
 <span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>  <span class="at">--father-col</span> pgs_f <span class="dt">\</span></span>
