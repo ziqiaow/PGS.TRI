@@ -68,7 +68,7 @@ cd PGS.TRI
 package='/dcs04/nilanjan/data/zwang/tools/PGS.TRI'
 path_example='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'
 
-Rscript ${package}/inst/exec/pgs_tri \
+Rscript ${package}/inst/pgs_tri \
   --input ${path_example}/testdat_snipar.txt \
   --output ${path_example}/test_results.txt \
   --offspring_col pgs_c \
@@ -81,13 +81,13 @@ Rscript ${package}/inst/exec/pgs_tri \
 ### Basic analysis
 
 ```bash
-Rscript inst/exec/pgs_tri --input data.txt --output results.txt
+Rscript inst/pgs_tri --input data.txt --output results.txt
 ```
 
 ### Full model
 
 ```bash
-Rscript inst/exec/pgs_tri \
+Rscript inst/pgs_tri \
   --input data.txt \
   --output results.txt \
   --offspring_col pgs_c \
