@@ -51,6 +51,17 @@
 <!-- badges: end -->
 <p>PGS-TRI is for the analysis of polygenic scores (PGS) or polygenic risk scores (PRS) in case-parent trio studies for estimation of the risk of an index condition associated with direct effects of inherited PGS, indirect effects of parental PGS, and gene-environment interactions under a unified log-linear modeling framework. This tool can characterize genetic risks of diseases in the presence of population structure, assortative mating, and indirect genetic effects.</p>
 <div class="section level2">
+<h2 id="recent-version-history">Recent Version History<a class="anchor" aria-label="anchor" href="#recent-version-history"></a>
+</h2>
+<ul>
+<li>Apr 3, 2026: Add command line feature to run PGS-TRI.</li>
+<li>Apr 2, 2026: Update example codes.</li>
+<li>March 30, 2026: Update PGS-TRI function, added PGS-TRI-centered feature for centering <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>δ</mi><annotation encoding="application/x-tex">\delta</annotation></semantics></math>-IDE using reference data.</li>
+<li>June 17, 2025: Update citation medRxiv version 2.</li>
+<li>Sept 18, 2024: Repository made public.</li>
+</ul>
+</div>
+<div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>The package can be easily installed from Github</p>
@@ -69,18 +80,107 @@
 <div class="section level2">
 <h2 id="tutorial">Tutorial<a class="anchor" aria-label="anchor" href="#tutorial"></a>
 </h2>
-<p>The full tutorial of PGS.TRI package and data examples are in this website <a href="https://ziqiaow.github.io/PGS.TRI/">https://ziqiaow.github.io/PGS.TRI/</a>.</p>
+<p>The full tutorial of PGS.TRI package and data examples to run within R are in this website <a href="https://ziqiaow.github.io/PGS.TRI/">https://ziqiaow.github.io/PGS.TRI/</a>.</p>
 <p>The source code for the manuscript is available in <a href="https://github.com/ziqiaow/PGS-TRI-Analysis" class="external-link">https://github.com/ziqiaow/PGS-TRI-Analysis</a>.</p>
 </div>
 <div class="section level2">
-<h2 id="recent-version-history">Recent Version History<a class="anchor" aria-label="anchor" href="#recent-version-history"></a>
+<h2 id="run-pgs-tri-from-command-line">Run PGS-TRI from Command Line<a class="anchor" aria-label="anchor" href="#run-pgs-tri-from-command-line"></a>
 </h2>
-<ul>
-<li>Apr 2, 2026: Update example codes.</li>
-<li>March 30, 2026: Update PGS-TRI function, added PGS-TRI-centered feature for centering <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>δ</mi><annotation encoding="application/x-tex">\delta</annotation></semantics></math>-IDE using reference data.</li>
-<li>June 17, 2025: Update citation medRxiv version 2.</li>
-<li>Sept 18, 2024: Repository made public.</li>
-</ul>
+<p>Example codes for running PGS-TRI using command line:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Download or clone this GitHub repository by </span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ziqiaow/PGS.TRI.git</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Go to the directory</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="bu">cd</span> PGS.TRI</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Install dependency (first time only)</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"install.packages('optparse')"</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co"># Run analysis</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="ex">Rscript</span> inst/exec/pgs_tri <span class="at">--input</span> data.txt <span class="at">--output</span> results.txt <span class="at">--verbose</span></span></code></pre></div>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="usage-examples-using-command-line">Usage Examples using Command Line<a class="anchor" aria-label="anchor" href="#usage-examples-using-command-line"></a>
+</h2>
+<div class="section level3">
+<h3 id="basic-analysis">Basic analysis<a class="anchor" aria-label="anchor" href="#basic-analysis"></a>
+</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">Rscript</span> inst/exec/pgs_tri <span class="at">--input</span> family_data.txt <span class="at">--output</span> results.txt</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="full-model">Full model<a class="anchor" aria-label="anchor" href="#full-model"></a>
+</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">Rscript</span> inst/exec/pgs_tri <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="at">--input</span> data.txt <span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">--output</span> results.txt <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">--offspring_col</span> pgs_c <span class="dt">\</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">--mother_col</span> pgs_m <span class="dt">\</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="at">--father_col</span> pgs_f</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="ex">--gxe</span> <span class="dt">\</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="at">--parental_indirect</span> <span class="dt">\</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>  <span class="at">--parental_diff_ref</span> 0 <span class="dt">\</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>  <span class="at">--envir</span> age,sex,bmi <span class="dt">\</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>  <span class="at">--formula</span> <span class="st">'~ age + factor(sex) + bmi'</span> <span class="dt">\</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>  <span class="at">--small_trio</span> <span class="dt">\</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>  <span class="at">--save_rds</span> <span class="dt">\</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>  <span class="at">--verbose</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="test-with-example-data">Test with example data<a class="anchor" aria-label="anchor" href="#test-with-example-data"></a>
+</h3>
+<p>Custom column names:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">Rscript</span> inst/exec/pgs_tri <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="at">--input</span> inst/extdata/testdat_snipar.txt <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="at">--output</span> test_results.txt <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="at">--offspring_col</span> pgs_c <span class="dt">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="at">--mother_col</span> pgs_m <span class="dt">\</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="at">--father_col</span> pgs_f <span class="dt">\</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  <span class="at">--save_rds</span> <span class="dt">\</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>  <span class="at">--verbose</span></span></code></pre></div>
+<hr>
+</div>
+</div>
+<div class="section level2">
+<h2 id="command-line-options">Command Line Options<a class="anchor" aria-label="anchor" href="#command-line-options"></a>
+</h2>
+<pre><code>Required:
+  --input FILE              Input file with family PGS data
+  --output FILE             Output file path
+
+Analysis Options:
+  --gxe                     Estimate gene-environment interactions
+  --parental_indirect       Estimate parental indirect effects
+  --parental_diff_ref NUM   Reference data female-male PGS difference [default: 0]
+  --envir VARS              Environmental variables (comma-separated)
+  --formula FORMULA         R formula for environmental variables
+  --side INT                Test side: 1 or 2 [default: 2]
+  --small_trio              Use t-test for small samples (&lt;100)
+
+Input Format:
+  --sep CHAR                Field separator [default: tab]
+  --header                  Input has header [default: TRUE]
+  --offspring_col NAME      Offspring PGS column [default: pgs_c]
+  --mother_col NAME         Mother PGS column [default: pgs_m]
+  --father_col NAME         Father PGS column [default: pgs_f]
+
+Output Options:
+  --save_rds                Save results as RDS files
+  --verbose                 Print detailed output
+  --version                 Print version
+  --help                    Show this help message</code></pre>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="input-file-format">Input File Format<a class="anchor" aria-label="anchor" href="#input-file-format"></a>
+</h2>
+<p>Tab-delimited file with family PGS data:</p>
+<pre><code>pgs_offspring   pgs_mother  pgs_father  age sex
+0.523   0.412   0.389   45  1
+0.678   0.534   0.621   52  0
+0.234   0.289   0.198   38  1</code></pre>
+<p>For GxE analysis, include environmental variables as additional columns.</p>
+<hr>
 </div>
 <div class="section level1">
 <div class="page-header"><h1 id="questions">Questions<a class="anchor" aria-label="anchor" href="#questions"></a>
