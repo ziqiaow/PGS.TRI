@@ -75,8 +75,6 @@ option_list <- list(
               help = "Sided test: 1 or 2 [default: %default]"),
   make_option(c("--small-trio"), action = "store_true", default = FALSE,
               help = "Use t-test for small sample size (<100) [default: %default]"),
-  make_option(c("--sep"), type = "character", default = "\t",
-              help = "Field separator [default: tab]"),
   make_option(c("--header"), action = "store_true", default = TRUE,
               help = "Input file has header [default: %default]"),
   make_option(c("--offspring-col"), type = "numeric", default = "pgs_c",
@@ -98,7 +96,7 @@ opt_parser <- OptionParser(
     studies\n",
   epilogue = paste(
     "Examples:",
-    "  pgs_tri -i family_data.txt -o results.txt",
+    "  pgs_tri -i data.txt -o results.txt",
     "  pgs_tri -i data.txt -o results.txt --parental-indirect -v",
     "  pgs_tri -i data.txt -o results.txt --gxe -e 'age,sex' -f '~ age + factor(sex)'",
     "", sep = "\n"
