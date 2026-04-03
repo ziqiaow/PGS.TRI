@@ -75,11 +75,11 @@ father (–father-col)
 
 ``` bash
 path_to_package='/dcs04/nilanjan/data/zwang/tools/PGS.TRI'
-path_to_example='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'
+path_to_data='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'
 
 Rscript ${path_to_package}/inst/pgs_tri \
-  --input ${path_to_example}/testdat_snipar.txt \
-  --output ${path_to_example}/test_results.txt \
+  --input ${path_to_data}/testdat_snipar.txt \
+  --output ${path_to_data}/test_results.txt \
   --offspring-col pgs_c \
   --mother-col pgs_m \
   --father-col pgs_f \
@@ -93,8 +93,8 @@ data (such as the UK Biobank) female-male PGS value difference of
 
 ``` bash
 Rscript ${path_to_package}/inst/pgs_tri \
-  --input ${path_to_example}/testdat_snipar.txt \
-  --output ${path_to_example}/test_results.txt \
+  --input ${path_to_data}/testdat_snipar.txt \
+  --output ${path_to_data}/test_results.txt \
   --offspring-col pgs_c \
   --mother-col pgs_m \
   --father-col pgs_f \
