@@ -22,7 +22,12 @@ structure, assortative mating, and indirect genetic effects.
 * June 17, 2025: Update citation medRxiv version 2.
 * Sept 18, 2024: Repository made public.
 
-## Installation
+The source code for the manuscript is available in [https://github.com/ziqiaow/PGS-TRI-Analysis](https://github.com/ziqiaow/PGS-TRI-Analysis).
+
+## Run PGS-TRI in R
+The full tutorial of PGS.TRI package and data examples are in this website [https://ziqiaow.github.io/PGS.TRI/](https://ziqiaow.github.io/PGS.TRI/). An interactive R tutorial with examples is provided at: [Get started](https://ziqiaow.github.io/PGS.TRI/articles/PGS-TRI.html).
+
+### Installation in R
 
 The package can be easily installed from Github
 
@@ -40,14 +45,10 @@ If you only want to use specific functions, you can also do this
     source("./R/PGS-TRI.R")
     source("./R/simulation.R")
 
-## Tutorial
 
-The full tutorial of PGS.TRI package and data examples to run within R are in this website [https://ziqiaow.github.io/PGS.TRI/](https://ziqiaow.github.io/PGS.TRI/).
-
-The source code for the manuscript is available in [https://github.com/ziqiaow/PGS-TRI-Analysis](https://github.com/ziqiaow/PGS-TRI-Analysis).
 
 ## Run PGS-TRI from Command Line
-Example codes for running PGS-TRI using command line:
+PGS-TRI can also be run directly from the command line without starting an R session. Example codes for running PGS-TRI using command line:
 ```bash
 # Download or clone this GitHub repository by 
 git clone https://github.com/ziqiaow/PGS.TRI.git
@@ -55,11 +56,6 @@ git clone https://github.com/ziqiaow/PGS.TRI.git
 # Go to the directory
 cd PGS.TRI
 
-# Install dependency (first time only)
-Rscript -e "install.packages('optparse')"
-
-# Run analysis
-Rscript inst/exec/pgs_tri --input data.txt --output results.txt --verbose
 ```
 
 
@@ -67,12 +63,26 @@ Rscript inst/exec/pgs_tri --input data.txt --output results.txt --verbose
 
 ## Usage Examples using Command Line
 
+### Test with example data
+```bash
+package='/dcs04/nilanjan/data/zwang/tools/PGS.TRI'
+path_example='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'
+
+Rscript ${package}/inst/exec/pgs_tri \
+  --input ${path_example}/testdat_snipar.txt \
+  --output ${path_example}/test_results.txt \
+  --offspring_col pgs_c \
+  --mother_col pgs_m \
+  --father_col pgs_f \
+  --save_rds \
+  --verbose
+```
+
 ### Basic analysis
 
 ```bash
-Rscript inst/exec/pgs_tri --input family_data.txt --output results.txt
+Rscript inst/exec/pgs_tri --input data.txt --output results.txt
 ```
-
 
 ### Full model
 
@@ -93,18 +103,6 @@ Rscript inst/exec/pgs_tri \
   --verbose
 ```
 
-### Test with example data
-Custom column names:
-```bash
-Rscript inst/exec/pgs_tri \
-  --input inst/extdata/testdat_snipar.txt \
-  --output test_results.txt \
-  --offspring_col pgs_c \
-  --mother_col pgs_m \
-  --father_col pgs_f \
-  --save_rds \
-  --verbose
-```
 
 ---
 
@@ -112,7 +110,7 @@ Rscript inst/exec/pgs_tri \
 
 ```
 Required:
-  --input FILE              Input file with family PGS data
+  --input FILE              Input file, see format below. Each row presents a family, each column represents the PGS values of child, mother, father, respectively; if GxE interactions analysis is required, then environmental variables can also be included in the same .txt file
   --output FILE             Output file path
 
 Analysis Options:
@@ -145,7 +143,7 @@ Output Options:
 Tab-delimited file with family PGS data:
 
 ```
-pgs_offspring	pgs_mother	pgs_father	age	sex
+pgs_c	pgs_m	pgs_f	age	sex
 0.523	0.412	0.389	45	1
 0.678	0.534	0.621	52	0
 0.234	0.289	0.198	38	1
