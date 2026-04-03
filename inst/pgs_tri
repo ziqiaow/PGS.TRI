@@ -9,7 +9,7 @@ script_path <- sub("--file=", "", args[grep("--file=", args)])
 if (length(script_path) > 0) {
   # Script is at inst/exec/pgs_tri, so go up 2 levels to package root
   script_path <- normalizePath(script_path)
-  pkg_root <- dirname(dirname(script_path))  # Up 2 levels: exec -> inst -> root
+  pkg_root <- dirname(dirname(script_path))  # Up 2 levels: inst -> root
 
   # Check if R directory exists
   r_dir <- file.path(pkg_root, "R")
@@ -88,9 +88,7 @@ option_list <- list(
   make_option(c("--save-rds"), action = "store_true", default = TRUE,
               help = "Save full results as RDS file"),
   make_option(c("-v", "--verbose"), action = "store_true", default = TRUE,
-              help = "Print verbose output"),
-  make_option(c("--version"), action = "store_true", default = TRUE,
-              help = "Print version and exit")
+              help = "Print verbose output")
 )
 
 opt_parser <- OptionParser(
@@ -109,10 +107,6 @@ opt_parser <- OptionParser(
 
 opt <- parse_args(opt_parser)
 
-if (opt$version) {
-  cat("PGS.TRI version", as.character(packageVersion("PGS.TRI")), "\n")
-  quit(status = 0)
-}
 
 if (is.null(opt$input) || is.null(opt$output)) {
   cat("Error: Both --input and --output are required\n\n")
