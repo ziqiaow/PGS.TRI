@@ -137,7 +137,7 @@ Analysis Options:
   --envir VARS              Environmental variables (comma-separated)
   --formula FORMULA         R formula for environmental variables
   --side INT                Test side: 1 or 2 [default: 2]
-  --small-trio              Use t-test for small samples (<100)
+  --small-trio              Use t-test for small samples (N_trio < 100) [default: FALSE]
 
 Input Format:
   --offspring-col NAME      Offspring PGS column [default: pgs_c]
@@ -145,9 +145,8 @@ Input Format:
   --father-col NAME         Father PGS column [default: pgs_f]
 
 Output Options:
-  --save-rds                Save results as RDS files
-  --verbose                 Print detailed output
-  --version                 Print version
+  --save-rds                Save results as RDS files [default: TRUE]
+  --verbose                 Print detailed output [default: TRUE]
   --help                    Show this help message
 ```
 
