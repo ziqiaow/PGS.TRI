@@ -103,7 +103,7 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="va">package</span><span class="op">=</span><span class="st">'/dcs04/nilanjan/data/zwang/tools/PGS.TRI'</span></span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="va">path_example</span><span class="op">=</span><span class="st">'/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'</span></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">Rscript</span> <span class="va">${package}</span>/inst/exec/pgs_tri <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">Rscript</span> <span class="va">${package}</span>/inst/pgs_tri <span class="dt">\</span></span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">--input</span> <span class="va">${path_example}</span>/testdat_snipar.txt <span class="dt">\</span></span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="at">--output</span> <span class="va">${path_example}</span>/test_results.txt <span class="dt">\</span></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="at">--offspring_col</span> pgs_c <span class="dt">\</span></span>
@@ -115,12 +115,12 @@
 <div class="section level3">
 <h3 id="basic-analysis">Basic analysis<a class="anchor" aria-label="anchor" href="#basic-analysis"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">Rscript</span> inst/exec/pgs_tri <span class="at">--input</span> data.txt <span class="at">--output</span> results.txt</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">Rscript</span> inst/pgs_tri <span class="at">--input</span> data.txt <span class="at">--output</span> results.txt</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="full-model">Full model<a class="anchor" aria-label="anchor" href="#full-model"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">Rscript</span> inst/exec/pgs_tri <span class="dt">\</span></span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">Rscript</span> inst/pgs_tri <span class="dt">\</span></span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="at">--input</span> data.txt <span class="dt">\</span></span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="at">--output</span> results.txt <span class="dt">\</span></span>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="at">--offspring_col</span> pgs_c <span class="dt">\</span></span>
