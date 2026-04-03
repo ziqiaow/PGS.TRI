@@ -66,12 +66,12 @@ cd PGS.TRI
 ### Test with example data
 Input the column names for child, mother, father under command
 ```bash
-package='/dcs04/nilanjan/data/zwang/tools/PGS.TRI'
-path_example='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'
+path_to_package='/dcs04/nilanjan/data/zwang/tools/PGS.TRI'
+path_to_example='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'
 
-Rscript ${package}/inst/pgs_tri \
-  --input ${path_example}/testdat_snipar.txt \
-  --output ${path_example}/test_results.txt \
+Rscript ${path_to_package}/inst/pgs_tri \
+  --input ${path_to_example}/testdat_snipar.txt \
+  --output ${path_to_example}/test_results.txt \
   --offspring-col pgs_c \
   --mother-col pgs_m \
   --father-col pgs_f \
