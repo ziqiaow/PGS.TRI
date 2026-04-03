@@ -22,5 +22,6 @@ Paper source code: https://github.com/ziqiaow/PGS-TRI-Analysis
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Imports: 
+    data.table,
     MASS,
     optparse

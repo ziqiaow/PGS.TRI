@@ -2,6 +2,7 @@
 
 suppressPackageStartupMessages({
   library(PGS.TRI)
+  library(data.table)
   library(optparse)
 })
 
@@ -91,7 +92,7 @@ if (opt$verbose) {
 if (opt$verbose) cat("Loading data...\n")
 
 tryCatch({
-  data <- read.table(opt$input, header = opt$header, stringsAsFactors = FALSE)
+  data <- fread(opt$input)
 }, error = function(e) {
   cat("Error reading input:", conditionMessage(e), "\n")
   quit(status = 1)
