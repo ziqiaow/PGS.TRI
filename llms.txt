@@ -25,8 +25,8 @@ The source code for the manuscript is available in
 ## Run PGS-TRI in R
 
 The full tutorial of PGS.TRI package and data examples are in this
-website <https://ziqiaow.github.io/PGS.TRI/>. Specifically, for the
-analysis in R is under [Get
+website <https://ziqiaow.github.io/PGS.TRI/>. An interactive R tutorial
+with examples is provided at: [Get
 started](https://ziqiaow.github.io/PGS.TRI/articles/PGS-TRI.html).
 
 ### Installation in R
