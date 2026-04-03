@@ -10,6 +10,12 @@ under a unified log-linear modeling framework. This tool can
 characterize genetic risks of diseases in the presence of population
 structure, assortative mating, and indirect genetic effects.
 
+The full tutorial of PGS.TRI package and data examples are in this
+website <https://ziqiaow.github.io/PGS.TRI/>.
+
+The source code for the manuscript is available in
+<https://github.com/ziqiaow/PGS-TRI-Analysis>.
+
 ## Recent Version History
 
 - Apr 3, 2026: Add command line feature to run PGS-TRI.
@@ -18,12 +24,6 @@ structure, assortative mating, and indirect genetic effects.
   feature for centering $\delta$-IDE using reference data.
 - June 17, 2025: Update citation medRxiv version 2.
 - Sept 18, 2024: Repository made public.
-
-The source code for the manuscript is available in
-<https://github.com/ziqiaow/PGS-TRI-Analysis>.
-
-The full tutorial of PGS.TRI package and data examples are in this
-website <https://ziqiaow.github.io/PGS.TRI/>.
 
 ------------------------------------------------------------------------
 
@@ -155,8 +155,6 @@ Rscript inst/pgs_tri \
       --save-rds                Save results as RDS files [default: TRUE]
       --verbose                 Print detailed output [default: TRUE]
       --help                    Show this help message
-
-------------------------------------------------------------------------
 
 ## Input File Format
 
