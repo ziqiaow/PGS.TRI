@@ -64,6 +64,7 @@ cd PGS.TRI
 ## Usage Examples using Command Line
 
 ### Test with example data
+Input the column names for child, mother, father under command
 ```bash
 package='/dcs04/nilanjan/data/zwang/tools/PGS.TRI'
 path_example='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'
@@ -71,9 +72,9 @@ path_example='/dcs04/nilanjan/data/zwang/tools/PGS.TRI/inst/extdata/'
 Rscript ${package}/inst/pgs_tri \
   --input ${path_example}/testdat_snipar.txt \
   --output ${path_example}/test_results.txt \
-  --offspring_col pgs_c \
-  --mother_col pgs_m \
-  --father_col pgs_f \
+  --offspring-col pgs_c \
+  --mother-col pgs_m \
+  --father-col pgs_f \
   --save_rds \
   --verbose
 ```
@@ -90,12 +91,12 @@ Rscript inst/pgs_tri --input data.txt --output results.txt
 Rscript inst/pgs_tri \
   --input data.txt \
   --output results.txt \
-  --offspring_col pgs_c \
-  --mother_col pgs_m \
-  --father_col pgs_f
+  --offspring-col pgs_c \
+  --mother-col pgs_m \
+  --father-col pgs_f
   --gxe \
-  --parental_indirect \
-  --parental_diff_ref 0 \
+  --parental-indirect \
+  --parental-diff-ref 0 \
   --envir age,sex,bmi \
   --formula '~ age + factor(sex) + bmi' \
   --small_trio \
@@ -115,22 +116,22 @@ Required:
 
 Analysis Options:
   --gxe                     Estimate gene-environment interactions
-  --parental_indirect       Estimate parental indirect effects
-  --parental_diff_ref NUM   Reference data female-male PGS difference [default: 0]
+  --parental-indirect       Estimate parental indirect effects
+  --parental-diff-ref NUM   Reference data female-male PGS difference [default: 0]
   --envir VARS              Environmental variables (comma-separated)
   --formula FORMULA         R formula for environmental variables
   --side INT                Test side: 1 or 2 [default: 2]
-  --small_trio              Use t-test for small samples (<100)
+  --small-trio              Use t-test for small samples (<100)
 
 Input Format:
   --sep CHAR                Field separator [default: tab]
   --header                  Input has header [default: TRUE]
-  --offspring_col NAME      Offspring PGS column [default: pgs_c]
-  --mother_col NAME         Mother PGS column [default: pgs_m]
-  --father_col NAME         Father PGS column [default: pgs_f]
+  --offspring-col NAME      Offspring PGS column [default: pgs_c]
+  --mother-col NAME         Mother PGS column [default: pgs_m]
+  --father-col NAME         Father PGS column [default: pgs_f]
 
 Output Options:
-  --save_rds                Save results as RDS files
+  --save-rds                Save results as RDS files
   --verbose                 Print detailed output
   --version                 Print version
   --help                    Show this help message
