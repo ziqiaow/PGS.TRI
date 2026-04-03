@@ -108,7 +108,6 @@
 <span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>  <span class="at">--father-col</span> pgs_f <span class="dt">\</span></span>
 <span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>  <span class="at">--save-rds</span> <span class="dt">\</span></span>
 <span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>  <span class="at">--verbose</span></span></code></pre></div>
-<p>The result output (.txt output and .rds file) will be saved in path_to_result.</p>
 <p>If we want to test for indirect effect, and also center by a reference data (such as the UK Biobank) female-male PGS value difference of 0.0001:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="va">${path_to_package}</span>/PGS.TRI/inst/pgs_tri <span class="dt">\</span></span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="at">--input</span> <span class="va">${path_to_package}</span>/PGS.TRI/inst/extdata/testdat_snipar.txt <span class="dt">\</span></span>
@@ -120,6 +119,7 @@
 <span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="at">--parental-diff-ref</span> 0.0001 <span class="dt">\</span></span>
 <span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>  <span class="at">--save-rds</span> <span class="dt">\</span></span>
 <span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>  <span class="at">--verbose</span></span></code></pre></div>
+<p>The result output (.txt output and .rds file) will be saved in path_to_result.</p>
 </div>
 <div class="section level3">
 <h3 id="basic-analysis">Basic analysis<a class="anchor" aria-label="anchor" href="#basic-analysis"></a>
@@ -130,7 +130,7 @@
 <div class="section level3">
 <h3 id="full-model">Full model<a class="anchor" aria-label="anchor" href="#full-model"></a>
 </h3>
-<p>Specify the column names from your input .txt file for child (–offspring-col), mother (–mother-col), and father (–father-col).</p>
+<p>Specify the column names from your input .txt file for child (–offspring-col), mother (–mother-col), and father (–father-col), for GxE interaction analysis, the column names for E variables should be specified in –envir and –formula.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="va">${path_to_package}</span>/inst/pgs_tri <span class="dt">\</span></span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="at">--input</span> <span class="va">${path_to_data}</span>/data.txt <span class="dt">\</span></span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="at">--output</span> <span class="va">${path_to_result}</span>/results.txt <span class="dt">\</span></span>

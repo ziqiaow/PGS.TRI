@@ -91,9 +91,6 @@ Rscript ${path_to_package}/PGS.TRI/inst/pgs_tri \
   --verbose
 ```
 
-The result output (.txt output and .rds file) will be saved in
-path_to_result.
-
 If we want to test for indirect effect, and also center by a reference
 data (such as the UK Biobank) female-male PGS value difference of
 0.0001:
@@ -111,6 +108,9 @@ Rscript ${path_to_package}/PGS.TRI/inst/pgs_tri \
   --verbose
 ```
 
+The result output (.txt output and .rds file) will be saved in
+path_to_result.
+
 ### Basic analysis
 
 Replace path_to_package, path_to_data, and path_to_result with your own
@@ -123,7 +123,9 @@ Rscript ${path_to_package}/PGS.TRI/inst/pgs_tri --input ${path_to_data}/data.txt
 ### Full model
 
 Specify the column names from your input .txt file for child
-(–offspring-col), mother (–mother-col), and father (–father-col).
+(–offspring-col), mother (–mother-col), and father (–father-col), for
+GxE interaction analysis, the column names for E variables should be
+specified in –envir and –formula.
 
 ``` bash
 Rscript ${path_to_package}/inst/pgs_tri \
