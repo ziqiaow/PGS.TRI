@@ -70,7 +70,8 @@ cd PGS.TRI
 
 ### Test with example data
 
-Input the column names for child, mother, father under command
+Input the column names for child (–offspring-col), mother (–mother-col),
+father (–father-col)
 
 ``` bash
 path_to_package='/dcs04/nilanjan/data/zwang/tools/PGS.TRI'
@@ -82,6 +83,23 @@ Rscript ${path_to_package}/inst/pgs_tri \
   --offspring-col pgs_c \
   --mother-col pgs_m \
   --father-col pgs_f \
+  --save-rds \
+  --verbose
+```
+
+If we want to test for indirect effect, and also center by a reference
+data (such as the UK Biobank) female-male PGS value difference of
+0.0001:
+
+``` bash
+Rscript ${path_to_package}/inst/pgs_tri \
+  --input ${path_to_example}/testdat_snipar.txt \
+  --output ${path_to_example}/test_results.txt \
+  --offspring-col pgs_c \
+  --mother-col pgs_m \
+  --father-col pgs_f \
+  --parental-indirect TRUE \
+  --parental-diff-ref 0.0001 \
   --save-rds \
   --verbose
 ```
