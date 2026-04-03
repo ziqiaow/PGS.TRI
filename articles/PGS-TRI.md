@@ -70,7 +70,7 @@ dat = sim_prospective_population(n_fam=200000, #Number of families in the popula
                                envir=TRUE) #Include environmental variables in the disease risk model
 ```
 
-    ## Disease prevalence:  0.010665
+    ## Disease prevalence:  0.010645
 
 View the simulated data.
 
@@ -104,7 +104,7 @@ table(dat$D_sim)
 
     ## 
     ##      0      1 
-    ## 197867   2133
+    ## 197871   2129
 
 Randomly select 1000 affected probands and their families
 
@@ -142,9 +142,9 @@ res_sim$Coefficients_direct
 ```
 
     ##                             Estimate  Std.Error    Z.value       Pvalue
-    ## PGS                       0.56615086 0.11584076  4.8873201 1.022178e-06
-    ## PGS x factor(E_sim_bin)1 -0.15827835 0.14531123 -1.0892369 2.760494e-01
-    ## PGS x E_sim_norm         -0.02530494 0.07257992 -0.3486493 7.273526e-01
+    ## PGS                       0.38144038 0.11200084  3.4056920 0.0006599659
+    ## PGS x factor(E_sim_bin)1 -0.09540744 0.14213861 -0.6712282 0.5020751927
+    ## PGS x E_sim_norm          0.06266046 0.06584785  0.9515947 0.3413025606
 
 The original simulated data for PGS main effect was 0.4 and no
 interaction effect with E.
@@ -155,7 +155,7 @@ Print the within-family variances and the average for 1000 families.
 head(res_sim$var_fam)
 ```
 
-    ## [1] 0.7838722 1.0809604 0.3012021 0.2307946 0.3452338 0.1334449
+    ## [1] 0.1145986 0.5482620 0.0384810 0.7079308 0.9436784 0.4002518
 
 ``` r
 length(res_sim$var_fam)
@@ -167,7 +167,7 @@ length(res_sim$var_fam)
 sum(res_sim$var_fam)/length(res_sim$var_fam)
 ```
 
-    ## [1] 0.4358331
+    ## [1] 0.4369649
 
 Print running time of PGS.TRI() function of 1000 trios.
 
@@ -175,7 +175,7 @@ Print running time of PGS.TRI() function of 1000 trios.
 print(endTime - startTime)
 ```
 
-    ## Time difference of 0.1531873 secs
+    ## Time difference of 0.1348357 secs
 
 #### Indirect effect estimation and centering estimated indirect effect using a reference dataset
 
@@ -238,7 +238,7 @@ indirect effect estimation
 print(endTime - startTime)
 ```
 
-    ## Time difference of 0.001181126 secs
+    ## Time difference of 0.001114368 secs
 
 If we suspect systematic allele frequency differences between females
 and males (i.e., population-level mean PGS values differ by sex in the

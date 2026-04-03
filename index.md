@@ -138,8 +138,8 @@ Rscript inst/pgs_tri \
       --output FILE             Output file path
 
     Analysis Options:
-      --gxe                     Estimate gene-environment interactions
-      --parental-indirect       Estimate parental indirect effects
+      --gxe                     Estimate gene-environment interactions [default: FALSE]
+      --parental-indirect       Estimate parental indirect effects [default: FALSE]
       --parental-diff-ref NUM   Reference data female-male PGS difference [default: 0]
       --envir VARS              Environmental variables (comma-separated)
       --formula FORMULA         R formula for environmental variables
