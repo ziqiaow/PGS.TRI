@@ -15,6 +15,13 @@ under a unified log-linear modeling framework. This tool can
 characterize genetic risks of diseases in the presence of population
 structure, assortative mating, and indirect genetic effects.
 
+## Recent Version History
+* Apr 3, 2026: Add command line feature to run PGS-TRI.
+* Apr 2, 2026: Update example codes.
+* March 30, 2026: Update PGS-TRI function, added PGS-TRI-centered feature for centering $\delta$-IDE using reference data.
+* June 17, 2025: Update citation medRxiv version 2.
+* Sept 18, 2024: Repository made public.
+
 ## Installation
 
 The package can be easily installed from Github
@@ -35,15 +42,118 @@ If you only want to use specific functions, you can also do this
 
 ## Tutorial
 
-The full tutorial of PGS.TRI package and data examples are in this website [https://ziqiaow.github.io/PGS.TRI/](https://ziqiaow.github.io/PGS.TRI/).
+The full tutorial of PGS.TRI package and data examples to run within R are in this website [https://ziqiaow.github.io/PGS.TRI/](https://ziqiaow.github.io/PGS.TRI/).
 
 The source code for the manuscript is available in [https://github.com/ziqiaow/PGS-TRI-Analysis](https://github.com/ziqiaow/PGS-TRI-Analysis).
 
-## Recent Version History
-* Apr 2, 2026: Update example codes.
-* March 30, 2026: Update PGS-TRI function, added PGS-TRI-centered feature for centering $\delta$-IDE using reference data.
-* June 17, 2025: Update citation medRxiv version 2.
-* Sept 18, 2024: Repository made public.
+## Run PGS-TRI from Command Line
+Example codes for running PGS-TRI using command line:
+```bash
+# Download or clone this GitHub repository by 
+git clone https://github.com/ziqiaow/PGS.TRI.git
+
+# Go to the directory
+cd PGS.TRI
+
+# Install dependency (first time only)
+Rscript -e "install.packages('optparse')"
+
+# Run analysis
+Rscript inst/exec/pgs_tri --input data.txt --output results.txt --verbose
+```
+
+
+---
+
+## Usage Examples using Command Line
+
+### Basic analysis
+
+```bash
+Rscript inst/exec/pgs_tri --input family_data.txt --output results.txt
+```
+
+
+### Full model
+
+```bash
+Rscript inst/exec/pgs_tri \
+  --input data.txt \
+  --output results.txt \
+  --offspring_col pgs_c \
+  --mother_col pgs_m \
+  --father_col pgs_f
+  --gxe \
+  --parental_indirect \
+  --parental_diff_ref 0 \
+  --envir age,sex,bmi \
+  --formula '~ age + factor(sex) + bmi' \
+  --small_trio \
+  --save_rds \
+  --verbose
+```
+
+### Test with example data
+Custom column names:
+```bash
+Rscript inst/exec/pgs_tri \
+  --input inst/extdata/testdat_snipar.txt \
+  --output test_results.txt \
+  --offspring_col pgs_c \
+  --mother_col pgs_m \
+  --father_col pgs_f \
+  --save_rds \
+  --verbose
+```
+
+---
+
+## Command Line Options
+
+```
+Required:
+  --input FILE              Input file with family PGS data
+  --output FILE             Output file path
+
+Analysis Options:
+  --gxe                     Estimate gene-environment interactions
+  --parental_indirect       Estimate parental indirect effects
+  --parental_diff_ref NUM   Reference data female-male PGS difference [default: 0]
+  --envir VARS              Environmental variables (comma-separated)
+  --formula FORMULA         R formula for environmental variables
+  --side INT                Test side: 1 or 2 [default: 2]
+  --small_trio              Use t-test for small samples (<100)
+
+Input Format:
+  --sep CHAR                Field separator [default: tab]
+  --header                  Input has header [default: TRUE]
+  --offspring_col NAME      Offspring PGS column [default: pgs_c]
+  --mother_col NAME         Mother PGS column [default: pgs_m]
+  --father_col NAME         Father PGS column [default: pgs_f]
+
+Output Options:
+  --save_rds                Save results as RDS files
+  --verbose                 Print detailed output
+  --version                 Print version
+  --help                    Show this help message
+```
+
+---
+
+## Input File Format
+
+Tab-delimited file with family PGS data:
+
+```
+pgs_offspring	pgs_mother	pgs_father	age	sex
+0.523	0.412	0.389	45	1
+0.678	0.534	0.621	52	0
+0.234	0.289	0.198	38	1
+```
+
+For GxE analysis, include environmental variables as additional columns.
+
+---
 
 # Questions
 
