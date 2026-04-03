@@ -65,19 +65,31 @@ cd PGS.TRI
 
 # Install dependency (first time only)
 Rscript -e "install.packages('optparse','data.table')"
-
-# Run analysis
-Rscript inst/exec/pgs_tri --input data.txt --output results.txt --verbose
 ```
 
 ------------------------------------------------------------------------
 
 ## Usage Examples using Command Line
 
+### Test with example data
+
+Custom column names:
+
+``` bash
+Rscript inst/exec/pgs_tri \
+  --input inst/extdata/testdat_snipar.txt \
+  --output test_results.txt \
+  --offspring_col pgs_c \
+  --mother_col pgs_m \
+  --father_col pgs_f \
+  --save_rds \
+  --verbose
+```
+
 ### Basic analysis
 
 ``` bash
-Rscript inst/exec/pgs_tri --input family_data.txt --output results.txt
+Rscript inst/exec/pgs_tri --input data.txt --output results.txt
 ```
 
 ### Full model
@@ -95,21 +107,6 @@ Rscript inst/exec/pgs_tri \
   --envir age,sex,bmi \
   --formula '~ age + factor(sex) + bmi' \
   --small_trio \
-  --save_rds \
-  --verbose
-```
-
-### Test with example data
-
-Custom column names:
-
-``` bash
-Rscript inst/exec/pgs_tri \
-  --input inst/extdata/testdat_snipar.txt \
-  --output test_results.txt \
-  --offspring_col pgs_c \
-  --mother_col pgs_m \
-  --father_col pgs_f \
   --save_rds \
   --verbose
 ```

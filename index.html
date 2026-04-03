@@ -94,50 +94,47 @@
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="bu">cd</span> PGS.TRI</span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Install dependency (first time only)</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"install.packages('optparse','data.table')"</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co"># Run analysis</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="ex">Rscript</span> inst/exec/pgs_tri <span class="at">--input</span> data.txt <span class="at">--output</span> results.txt <span class="at">--verbose</span></span></code></pre></div>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"install.packages('optparse','data.table')"</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level2">
 <h2 id="usage-examples-using-command-line">Usage Examples using Command Line<a class="anchor" aria-label="anchor" href="#usage-examples-using-command-line"></a>
 </h2>
 <div class="section level3">
+<h3 id="test-with-example-data">Test with example data<a class="anchor" aria-label="anchor" href="#test-with-example-data"></a>
+</h3>
+<p>Custom column names:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">Rscript</span> inst/exec/pgs_tri <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="at">--input</span> inst/extdata/testdat_snipar.txt <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="at">--output</span> test_results.txt <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="at">--offspring_col</span> pgs_c <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">--mother_col</span> pgs_m <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="at">--father_col</span> pgs_f <span class="dt">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="at">--save_rds</span> <span class="dt">\</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  <span class="at">--verbose</span></span></code></pre></div>
+</div>
+<div class="section level3">
 <h3 id="basic-analysis">Basic analysis<a class="anchor" aria-label="anchor" href="#basic-analysis"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">Rscript</span> inst/exec/pgs_tri <span class="at">--input</span> family_data.txt <span class="at">--output</span> results.txt</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">Rscript</span> inst/exec/pgs_tri <span class="at">--input</span> data.txt <span class="at">--output</span> results.txt</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="full-model">Full model<a class="anchor" aria-label="anchor" href="#full-model"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">Rscript</span> inst/exec/pgs_tri <span class="dt">\</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="at">--input</span> data.txt <span class="dt">\</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">--output</span> results.txt <span class="dt">\</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">--offspring_col</span> pgs_c <span class="dt">\</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">--mother_col</span> pgs_m <span class="dt">\</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="at">--father_col</span> pgs_f</span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="ex">--gxe</span> <span class="dt">\</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="at">--parental_indirect</span> <span class="dt">\</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>  <span class="at">--parental_diff_ref</span> 0 <span class="dt">\</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>  <span class="at">--envir</span> age,sex,bmi <span class="dt">\</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>  <span class="at">--formula</span> <span class="st">'~ age + factor(sex) + bmi'</span> <span class="dt">\</span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>  <span class="at">--small_trio</span> <span class="dt">\</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>  <span class="at">--save_rds</span> <span class="dt">\</span></span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>  <span class="at">--verbose</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="test-with-example-data">Test with example data<a class="anchor" aria-label="anchor" href="#test-with-example-data"></a>
-</h3>
-<p>Custom column names:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">Rscript</span> inst/exec/pgs_tri <span class="dt">\</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="at">--input</span> inst/extdata/testdat_snipar.txt <span class="dt">\</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="at">--output</span> test_results.txt <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="at">--input</span> data.txt <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="at">--output</span> results.txt <span class="dt">\</span></span>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="at">--offspring_col</span> pgs_c <span class="dt">\</span></span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="at">--mother_col</span> pgs_m <span class="dt">\</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="at">--father_col</span> pgs_f <span class="dt">\</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  <span class="at">--save_rds</span> <span class="dt">\</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>  <span class="at">--verbose</span></span></code></pre></div>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="at">--father_col</span> pgs_f</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  <span class="ex">--gxe</span> <span class="dt">\</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>  <span class="at">--parental_indirect</span> <span class="dt">\</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>  <span class="at">--parental_diff_ref</span> 0 <span class="dt">\</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>  <span class="at">--envir</span> age,sex,bmi <span class="dt">\</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>  <span class="at">--formula</span> <span class="st">'~ age + factor(sex) + bmi'</span> <span class="dt">\</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>  <span class="at">--small_trio</span> <span class="dt">\</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a>  <span class="at">--save_rds</span> <span class="dt">\</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a>  <span class="at">--verbose</span></span></code></pre></div>
 <hr>
 </div>
 </div>
