@@ -54,7 +54,7 @@ If you only want to use specific functions, you can also do this
 PGS-TRI can also be run directly from the command line without starting an R session. Below are example codes for running PGS-TRI using command line.
 ### Getting Started
 ```bash
-# Download or clone this GitHub repository by 
+# Download PGS.TRI package
 git clone https://github.com/ziqiaow/PGS.TRI.git
 
 # Go to the directory
