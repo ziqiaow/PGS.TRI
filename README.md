@@ -112,9 +112,9 @@ Rscript ${path_to_package}/inst/pgs_tri \
   --offspring-col pgs_c \
   --mother-col pgs_m \
   --father-col pgs_f \
-  --gxe \
   --parental-indirect \
   --parental-diff-ref 0 \
+  --gxe \
   --envir age,sex,bmi \
   --formula '~ age + factor(sex) + bmi' \
   --small-trio \
