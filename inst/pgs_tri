@@ -132,7 +132,7 @@ if (opt$verbose) {
 if (opt$verbose) cat("Loading data...\n")
 
 tryCatch({
-  data <- fread(opt$input)
+  data <- fread(opt$input,data.table = FALSE)
 }, error = function(e) {
   cat("Error reading input:", conditionMessage(e), "\n")
   quit(status = 1)
