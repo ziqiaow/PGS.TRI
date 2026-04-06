@@ -18,11 +18,11 @@ The source code for the manuscript is available in
 
 ## Recent Version History
 
-- Apr 3, 2026: Add command line feature to run PGS-TRI.
-- Apr 2, 2026: Update example codes.
-- March 30, 2026: Update PGS-TRI function, added PGS-TRI-centered
+- Apr 3, 2026: Added command line feature to run PGS-TRI.
+- Apr 2, 2026: Updated example codes.
+- March 30, 2026: Updated PGS-TRI function, added PGS-TRI-centered
   feature for centering $\delta$-IDE using reference data.
-- June 17, 2025: Update citation medRxiv version 2.
+- June 17, 2025: Updated citation medRxiv version 2.
 - Sept 18, 2024: Repository made public.
 
 ------------------------------------------------------------------------
