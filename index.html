@@ -67,7 +67,11 @@
 <div class="section level2">
 <h2 id="run-pgs-tri-in-r">Run PGS-TRI in R<a class="anchor" aria-label="anchor" href="#run-pgs-tri-in-r"></a>
 </h2>
-<p>PGS-TRI can be run in an R session. An interactive R tutorial with examples is provided at: <a href="https://ziqiaow.github.io/PGS.TRI/articles/PGS-TRI.html">Get started</a>. ### Installation in R The package can be easily installed from Github</p>
+<p>PGS-TRI can be run in an R session. An interactive R tutorial with examples is provided at: <a href="https://ziqiaow.github.io/PGS.TRI/articles/PGS-TRI.html">Get started</a>.</p>
+<div class="section level3">
+<h3 id="installation-in-r">Installation in R<a class="anchor" aria-label="anchor" href="#installation-in-r"></a>
+</h3>
+<p>The package can be easily installed from Github</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">"ziqiaow/PGS.TRI"</span>)</span></code></pre></div>
 <p>If you only want to use specific functions, you can also do this</p>
@@ -81,10 +85,14 @@
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"./R/simulation.R"</span>)</span></code></pre></div>
 <hr>
 </div>
+</div>
 <div class="section level2">
 <h2 id="run-pgs-tri-from-command-line">Run PGS-TRI from Command Line<a class="anchor" aria-label="anchor" href="#run-pgs-tri-from-command-line"></a>
 </h2>
-<p>PGS-TRI can also be run directly from the command line without starting an R session. Below are example codes for running PGS-TRI using command line. ### Getting Started</p>
+<p>PGS-TRI can also be run directly from the command line without starting an R session. Below are example codes for running PGS-TRI using command line.</p>
+<div class="section level3">
+<h3 id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Download PGS.TRI package</span></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ziqiaow/PGS.TRI.git</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
@@ -93,6 +101,7 @@
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Load R (if not already loaded)</span></span>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="ex">module</span> load R</span></code></pre></div>
+</div>
 <div class="section level3">
 <h3 id="test-with-example-data">Test with example data<a class="anchor" aria-label="anchor" href="#test-with-example-data"></a>
 </h3>
@@ -124,7 +133,7 @@
 <div class="section level3">
 <h3 id="basic-analysis">Basic analysis<a class="anchor" aria-label="anchor" href="#basic-analysis"></a>
 </h3>
-<p>Replace path_to_package, path_to_data, and path_to_result with your own directory paths.</p>
+<p>Replace path_to_package, path_to_data, and path_to_result with your own directory paths. Replace data.txt and results.txt with your own data and output names.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="va">${path_to_package}</span>/PGS.TRI/inst/pgs_tri <span class="at">--input</span> <span class="va">${path_to_data}</span>/data.txt <span class="at">--output</span> <span class="va">${path_to_result}</span>/results.txt</span></code></pre></div>
 </div>
 <div class="section level3">

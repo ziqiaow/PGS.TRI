@@ -31,8 +31,11 @@ The source code for the manuscript is available in
 
 PGS-TRI can be run in an R session. An interactive R tutorial with
 examples is provided at: [Get
-started](https://ziqiaow.github.io/PGS.TRI/articles/PGS-TRI.html). \###
-Installation in R The package can be easily installed from Github
+started](https://ziqiaow.github.io/PGS.TRI/articles/PGS-TRI.html).
+
+### Installation in R
+
+The package can be easily installed from Github
 
 ``` R
 library(devtools)
@@ -58,7 +61,9 @@ source("./R/simulation.R")
 
 PGS-TRI can also be run directly from the command line without starting
 an R session. Below are example codes for running PGS-TRI using command
-line. \### Getting Started
+line.
+
+### Getting Started
 
 ``` bash
 # Download PGS.TRI package
@@ -114,7 +119,8 @@ path_to_result.
 ### Basic analysis
 
 Replace path_to_package, path_to_data, and path_to_result with your own
-directory paths.
+directory paths. Replace data.txt and results.txt with your own data and
+output names.
 
 ``` bash
 Rscript ${path_to_package}/PGS.TRI/inst/pgs_tri --input ${path_to_data}/data.txt --output ${path_to_result}/results.txt
