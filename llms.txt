@@ -21,7 +21,7 @@ The source code for the manuscript is available in
 - Apr 3, 2026: Added command line feature to run PGS-TRI.
 - Apr 2, 2026: Updated example codes.
 - March 30, 2026: Updated PGS-TRI function, added PGS-TRI-centered
-  feature for centering $\delta$-IDE using reference data.
+  feature for centering $`\delta`$-IDE using reference data.
 - June 17, 2025: Updated citation medRxiv version 2.
 - Sept 18, 2024: Repository made public.
 
@@ -196,12 +196,12 @@ package.
 
 **Reference**
 
-- Ziqiao Wang, Luke Grosvenor, Debashree Ray, Ingo Ruczinski, Terri
-  Beaty, Heather Volk, Christine Ladd-Acosta, Nilanjan Chatterjee
-  (2024). Estimation of Direct and Indirect Polygenic Effects and
-  Gene-Environment Interactions using Polygenic Scores in Case-Parent
-  Trio Studies. medRxiv.
-  <https://www.medrxiv.org/content/10.1101/2024.10.08.24315066v2>
+- Ziqiao Wang, Luke Grosvenor, Debashree Ray, Tianyuan Cheng, Ingo
+  Ruczinski, Terri Beaty, Heather Volk, Christine Ladd-Acosta, Nilanjan
+  Chatterjee (2026). Estimation of Direct and Indirect Polygenic Effects
+  and Gene-Environment Interactions using Polygenic Scores in
+  Case-Parent Trio Studies. Nat Genet.
+  <https://www.nature.com/articles/s41588-026-02601-2>
 
 # Package index
 

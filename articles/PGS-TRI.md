@@ -47,11 +47,12 @@ analysis, the case-only method is also implemented here
 
 First simulate 200000 families based on a population disease risk model
 following a logistic regression with PGS main effect, two independent
-environmental variables $E_{1}$ (binary) and $E_{2}$ (continuous), and
+environmental variables $`E_1`$ (binary) and $`E_2`$ (continuous), and
 their interaction effect with PGS. Assume the marginal disease
 prevalence is Pr(D=1)=0.01.
 
 ``` r
+
 #example analysis
 library(PGS.TRI)
 set.seed(04262023)
@@ -75,6 +76,7 @@ dat = sim_prospective_population(n_fam=200000, #Number of families in the popula
 View the simulated data.
 
 ``` r
+
 head(dat$E_sim)
 ```
 
@@ -87,6 +89,7 @@ head(dat$E_sim)
     ## [6,]         0 -0.6782173
 
 ``` r
+
 head(dat$pgs_fam)
 ```
 
@@ -99,6 +102,7 @@ head(dat$pgs_fam)
     ## [6,] -0.6639565 -0.3845802 -0.7305453
 
 ``` r
+
 table(dat$D_sim)
 ```
 
@@ -109,6 +113,7 @@ table(dat$D_sim)
 Randomly select 1000 affected probands and their families
 
 ``` r
+
 id = sample(which(dat$D_sim==1),size=1000,replace=F)
 PRS_fam = dat$pgs_fam[id,]
 envir = dat$E_sim[id,]
@@ -117,6 +122,7 @@ envir = dat$E_sim[id,]
 Fit our proposed method to the randomly selected 1000 trios
 
 ``` r
+
 startTime <- Sys.time()
 res_sim = PGS.TRI(pgs_offspring = PRS_fam[,1], 
                  pgs_mother = PRS_fam[,2], 
@@ -131,6 +137,7 @@ res_sim = PGS.TRI(pgs_offspring = PRS_fam[,1],
     ## The complete number of trios with non-missing environmental variables is 1000
 
 ``` r
+
 endTime <- Sys.time()
 ```
 
@@ -138,6 +145,7 @@ Print the final results of the estimated direct PGS effect and PGSxE
 interactions. “Estimate” refers to log relative risk (log RR).
 
 ``` r
+
 res_sim$Coefficients_direct
 ```
 
@@ -152,18 +160,21 @@ interaction effect with E.
 Print the within-family variances and the average for 1000 families.
 
 ``` r
+
 head(res_sim$var_fam)
 ```
 
     ## [1] 0.1145986 0.5482620 0.0384810 0.7079308 0.9436784 0.4002518
 
 ``` r
+
 length(res_sim$var_fam)
 ```
 
     ## [1] 1000
 
 ``` r
+
 sum(res_sim$var_fam)/length(res_sim$var_fam)
 ```
 
@@ -172,38 +183,42 @@ sum(res_sim$var_fam)/length(res_sim$var_fam)
 Print running time of PGS.TRI() function of 1000 trios.
 
 ``` r
+
 print(endTime - startTime)
 ```
 
-    ## Time difference of 0.1397102 secs
+    ## Time difference of 0.184588 secs
 
 #### Indirect effect estimation and centering estimated indirect effect using a reference dataset
 
 To analyze the asymmetric indirect parental effects, we show a simple
-example using our tool to estimate $\delta$-IDE (difference of parental
-indirect genetic effect. We first simulated data using existing tool
-[snipar](https://snipar.readthedocs.io/en/latest/index.html) and
-generated $100\, 000$ families across $1000$ independent SNPs. We
+example using our tool to estimate $`\delta`$-IDE (difference of
+parental indirect genetic effect. We first simulated data using existing
+tool [snipar](https://snipar.readthedocs.io/en/latest/index.html) and
+generated $`100\,000`$ families across $`1000`$ independent SNPs. We
 simulated a continuous phenotype influenced by direct genetic effects
-and assortative mating. We simulated $20$ generations of assortative
-mating and let the parental phenotype correlation to be $0.5$. PGS of
+and assortative mating. We simulated $`20`$ generations of assortative
+mating and let the parental phenotype correlation to be $`0.5`$. PGS of
 each individual is calculated using the simulated weights and SNPs from
 snipar. To simulate children’s disease status, we used the model
 including children’s PGS and parental indirect genetic effects, as well
 as mid-parental phenotype residuals after regressing out the parental
 PGS values as a family-level covariate to create an assortative mating
 effect in children’s disease outcome:
-$$\operatorname{logit}Pr\left( D_{iC}|PGS_{iC},PGS_{iM},PGS_{iF} \right) = \alpha_{i} + \beta_{G}PGS_{iC} + \beta_{M}PGS_{iM} + \beta_{F}PGS_{iF}.$$
+``` math
+\operatorname{logit} Pr(D_{iC} | PGS_{iC}, PGS_{iM}, PGS_{iF}) = \alpha_i + \beta_G PGS_{iC} + \beta_M PGS_{iM} + \beta_F PGS_{iF}.
+```
 Here, we let
-$\alpha_{i} \sim N\left( \alpha + cor_{G} \times 0.5\left( residual_{iM} + residual_{iF} \right),1 \right)$
-and set $\alpha$ so that the disease prevalence is fixed at around 0.01,
-and let the values of $cor_{G} = 0.4$ to further incorporate assortative
-mating effects. For this simulation example, we let
-$\beta_{G} = 0.4,\beta_{M} = \beta_{F} = 0$. We randomly sampled $1000$
+$`\alpha_i \sim N(\alpha + cor_G \times 0.5 (residual_{iM} + residual_{iF}), 1)`$
+and set $`\alpha`$ so that the disease prevalence is fixed at around
+0.01, and let the values of $`cor_G = 0.4`$ to further incorporate
+assortative mating effects. For this simulation example, we let
+$`\beta_G = 0.4, \beta_M = \beta_F = 0`$. We randomly sampled $`1000`$
 families with diseased children from the simulated data as an example
 dataset here:
 
 ``` r
+
 PRS_fam_select <- load_sim_dat()
 startTime <- Sys.time()
 res_snipar = PGS.TRI(pgs_offspring = PRS_fam_select[,1], pgs_mother = PRS_fam_select[,2], pgs_father = PRS_fam_select[,3], parental_indirect = T)
@@ -212,12 +227,14 @@ res_snipar = PGS.TRI(pgs_offspring = PRS_fam_select[,1], pgs_mother = PRS_fam_se
     ## The complete number of trios is 1000
 
 ``` r
+
 endTime <- Sys.time()
 ```
 
 Print the estimated direct and indirect effects:
 
 ``` r
+
 res_snipar$Coefficients_direct
 ```
 
@@ -225,6 +242,7 @@ res_snipar$Coefficients_direct
     ## PGS 0.3931264 0.06858119 5.732278 9.909063e-09
 
 ``` r
+
 res_snipar$Coefficients_indirect
 ```
 
@@ -235,27 +253,29 @@ Print running time of PGS.TRI() function of 1000 trios for direct and
 indirect effect estimation
 
 ``` r
+
 print(endTime - startTime)
 ```
 
-    ## Time difference of 0.001121521 secs
+    ## Time difference of 0.001062632 secs
 
 If we suspect systematic allele frequency differences between females
 and males (i.e., population-level mean PGS values differ by sex in the
 parental population, for example, due to asymmetric selection), a
 centering technique can be used for sensitivity analysis. We may use an
 external dataset to obtain the difference in PGS between women and men
-to center our estimate of $\delta$-IDE. In our manuscript of the autism
-application, we used data from the UK Biobank unrelated EUR individuals
-as a reference dataset to obtain external estimates of female-male
-differences in PGS values for various traits for sensitivity analyses of
-the EUR trios in the SPARK consortium. The PGS should be calculated
-using the same procedure and PC-projected onto the same space as the PGS
-values in the family-based study to ensure comparability. This mean sex
-difference can then be incorporated into the PGS-TRI function to correct
-for potential bias:
+to center our estimate of $`\delta`$-IDE. In our manuscript of the
+autism application, we used data from the UK Biobank unrelated EUR
+individuals as a reference dataset to obtain external estimates of
+female-male differences in PGS values for various traits for sensitivity
+analyses of the EUR trios in the SPARK consortium. The PGS should be
+calculated using the same procedure and PC-projected onto the same space
+as the PGS values in the family-based study to ensure comparability.
+This mean sex difference can then be incorporated into the PGS-TRI
+function to correct for potential bias:
 
 ``` r
+
 res_snipar_centered = PGS.TRI(pgs_offspring = PRS_fam_select[,1], pgs_mother = PRS_fam_select[,2], pgs_father = PRS_fam_select[,3], parental_indirect = T, parental_diff_ref = 0.001) #The parental_diff_ref is supplemented with a scalar value that is calculated from an independent large dataset of unrelated individuals with same ancestry background as the family-based study
 ```
 
@@ -266,6 +286,7 @@ centering analysis does not impact the original analysis of direct and
 indirect effect estimation.
 
 ``` r
+
 res_snipar_centered$Coefficients_direct
 ```
 
@@ -273,6 +294,7 @@ res_snipar_centered$Coefficients_direct
     ## PGS 0.3931264 0.06858119 5.732278 9.909063e-09
 
 ``` r
+
 res_snipar_centered$Coefficients_indirect
 ```
 
@@ -280,6 +302,7 @@ res_snipar_centered$Coefficients_indirect
     ## Indirect_Diff_MF -0.04566616 0.06636633 -0.6880923 0.4913947
 
 ``` r
+
 res_snipar_centered$Coefficients_indirect_centered
 ```
 
